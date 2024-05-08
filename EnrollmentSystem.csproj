@@ -100,13 +100,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="subjectEntryIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="darkenedSubjectPhoto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="whitenedsubjectimage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="studentEntryPic.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bookPattern.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="gradient.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

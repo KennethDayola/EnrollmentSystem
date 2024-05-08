@@ -63,9 +63,9 @@ namespace EnrollmentSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bookPattern {
+        internal static System.Drawing.Bitmap darkenedSubjectPhoto {
             get {
-                object obj = ResourceManager.GetObject("bookPattern", resourceCulture);
+                object obj = ResourceManager.GetObject("darkenedSubjectPhoto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace EnrollmentSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap gradient {
+        internal static System.Drawing.Bitmap image__1_ {
             get {
-                object obj = ResourceManager.GetObject("gradient", resourceCulture);
+                object obj = ResourceManager.GetObject("image (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,6 +86,26 @@ namespace EnrollmentSystem.Properties {
         internal static System.Drawing.Bitmap studentEntryPic {
             get {
                 object obj = ResourceManager.GetObject("studentEntryPic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap subjectEntryIcon {
+            get {
+                object obj = ResourceManager.GetObject("subjectEntryIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap whitenedsubjectimage {
+            get {
+                object obj = ResourceManager.GetObject("whitenedsubjectimage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
