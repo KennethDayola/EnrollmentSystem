@@ -22,8 +22,8 @@ namespace EnrollmentSystem
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (HelpMethods.AreTextBoxesEmpty(SubjectCodeTextBox, DescriptionTextBox, UnitsTextBox, CurriculumYearTextBox) ||
-                HelpMethods.AreComboBoxesEmpty(OfferingComboBox, CategoryComboBox, CourseCodeComboBox))
+            if (ValidateClrMethods.AreTextBoxesEmpty(SubjectCodeTextBox, DescriptionTextBox, UnitsTextBox, CurriculumYearTextBox) ||
+                ValidateClrMethods.AreComboBoxesEmpty(OfferingComboBox, CategoryComboBox, CourseCodeComboBox))
             {
                 MessageBox.Show("Please fill out all required fields before proceeding");
                 return;
@@ -120,8 +120,8 @@ namespace EnrollmentSystem
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            HelpMethods.ClearTextBoxes(SubjectCodeTextBox, DescriptionTextBox, UnitsTextBox, CurriculumYearTextBox);
-            HelpMethods.ClearComboBoxes(OfferingComboBox, CategoryComboBox, CourseCodeComboBox);
+            ValidateClrMethods.ClearTextBoxes(SubjectCodeTextBox, DescriptionTextBox, UnitsTextBox, CurriculumYearTextBox);
+            ValidateClrMethods.ClearComboBoxes(OfferingComboBox, CategoryComboBox, CourseCodeComboBox);
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)

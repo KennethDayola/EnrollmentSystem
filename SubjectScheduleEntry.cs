@@ -28,8 +28,8 @@ namespace EnrollmentSystem
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (HelpMethods.AreTextBoxesEmpty(SubjectEDPCodeTextBox, SubjectCodeTextBox, DaysTextBox, SectionTextBox,
-                RoomTextBox, SchoolYearTextBox) || HelpMethods.AreComboBoxesEmpty (XMComboBox))
+            if (ValidateClrMethods.AreTextBoxesEmpty(SubjectEDPCodeTextBox, SubjectCodeTextBox, DaysTextBox, SectionTextBox,
+                RoomTextBox, SchoolYearTextBox) || ValidateClrMethods.AreComboBoxesEmpty (XMComboBox))
             {
                 MessageBox.Show("Please fill out all required fields");
                 return;
@@ -144,9 +144,9 @@ namespace EnrollmentSystem
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            HelpMethods.ClearTextBoxes(SubjectEDPCodeTextBox, SubjectCodeTextBox, DaysTextBox, SectionTextBox,
+            ValidateClrMethods.ClearTextBoxes(SubjectEDPCodeTextBox, SubjectCodeTextBox, DaysTextBox, SectionTextBox,
                 RoomTextBox, SchoolYearTextBox);
-            HelpMethods.ClearComboBoxes(XMComboBox);
+            ValidateClrMethods.ClearComboBoxes(XMComboBox);
         }
 
         private void ExitLabel_Click(object sender, EventArgs e)

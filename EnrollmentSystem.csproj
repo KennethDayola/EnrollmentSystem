@@ -66,7 +66,7 @@
     <Compile Include="SubjectScheduleEntry.Designer.cs">
       <DependentUpon>SubjectScheduleEntry.cs</DependentUpon>
     </Compile>
-    <Compile Include="HelpMethods.cs" />
+    <Compile Include="ValidateClrMethods.cs" />
     <EmbeddedResource Include="StudentEntry.resx">
       <DependentUpon>StudentEntry.cs</DependentUpon>
     </EmbeddedResource>

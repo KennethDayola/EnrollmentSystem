@@ -23,8 +23,8 @@ namespace EnrollmentSystem
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (HelpMethods.AreTextBoxesEmpty(IDNumTextBox, FirstNameTextBox, LastNameTextBox, MiddleInitialTextBox,
-                CourseTextBox, CourseTextBox, YearTextBox) || HelpMethods.AreComboBoxesEmpty(RemarksComboBox))
+            if (ValidateClrMethods.AreTextBoxesEmpty(IDNumTextBox, FirstNameTextBox, LastNameTextBox, MiddleInitialTextBox,
+                CourseTextBox, CourseTextBox, YearTextBox) || ValidateClrMethods.AreComboBoxesEmpty(RemarksComboBox))
             {
                 MessageBox.Show("Please fill out all required fields before proceeding");
                 return;
@@ -80,9 +80,9 @@ namespace EnrollmentSystem
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            HelpMethods.ClearTextBoxes(IDNumTextBox, FirstNameTextBox, LastNameTextBox, MiddleInitialTextBox,
+            ValidateClrMethods.ClearTextBoxes(IDNumTextBox, FirstNameTextBox, LastNameTextBox, MiddleInitialTextBox,
                 CourseTextBox, CourseTextBox, YearTextBox);
-            HelpMethods.ClearComboBoxes(RemarksComboBox);
+            ValidateClrMethods.ClearComboBoxes(RemarksComboBox);
         }
 
         private void ExitLabel_Click(object sender, EventArgs e)
