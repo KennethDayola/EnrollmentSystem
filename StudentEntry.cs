@@ -85,15 +85,43 @@ namespace EnrollmentSystem
             ValidateClrMethods.ClearComboBoxes(RemarksComboBox);
         }
 
-        private void ExitLabel_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void StudentEntry_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (closedDirectly)
                 Application.Exit();
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void SubjectEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closedDirectly = false;
+            SubjectEntry subjectEntry= new SubjectEntry();
+            this.Hide();
+            subjectEntry.Show();
+            this.Close();
+        }
+
+        private void SubjectScheduleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closedDirectly = false;
+            SubjectScheduleEntry subjectScheduleEntry = new SubjectScheduleEntry();
+            this.Hide();
+            subjectScheduleEntry.Show();
+            this.Close();
+        }
+
+        private void FileToolStripMenuItem_DropDownClosed(object sender, EventArgs e)
+        {
+            FileToolStripMenuItem.ForeColor = Color.White;
+        }
+
+        private void FileToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
+        {
+            FileToolStripMenuItem.ForeColor = Color.Black;
         }
     }
 }
