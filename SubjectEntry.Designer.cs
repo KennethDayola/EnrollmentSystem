@@ -216,7 +216,7 @@
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Segoe UI Variable Display Semil", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Silver;
+            this.label16.ForeColor = System.Drawing.Color.DimGray;
             this.label16.Location = new System.Drawing.Point(468, 308);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(115, 25);
@@ -226,7 +226,7 @@
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Segoe UI Variable Display Semil", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Silver;
+            this.label15.ForeColor = System.Drawing.Color.DimGray;
             this.label15.Location = new System.Drawing.Point(693, 308);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(320, 25);
@@ -236,7 +236,7 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Segoe UI Variable Display Semil", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Silver;
+            this.label14.ForeColor = System.Drawing.Color.DimGray;
             this.label14.Location = new System.Drawing.Point(51, 303);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(264, 25);
@@ -352,6 +352,7 @@
             // CancelButton
             // 
             this.CancelButton.BackColor = System.Drawing.Color.White;
+            this.CancelButton.ForeColor = System.Drawing.SystemColors.Desktop;
             this.CancelButton.Location = new System.Drawing.Point(588, 310);
             this.CancelButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CancelButton.Name = "CancelButton";
@@ -364,6 +365,7 @@
             // SaveButton
             // 
             this.SaveButton.BackColor = System.Drawing.Color.White;
+            this.SaveButton.ForeColor = System.Drawing.SystemColors.Desktop;
             this.SaveButton.Location = new System.Drawing.Point(345, 310);
             this.SaveButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SaveButton.Name = "SaveButton";

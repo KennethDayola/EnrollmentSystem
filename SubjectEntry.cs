@@ -73,7 +73,7 @@ namespace EnrollmentSystem
                 databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
 
                 int index;
-                if (databaseHelper.CheckAndFetchFromDB(RequisiteTextBox.Text, "SFSUBJCODE", query, "SFSUBJCODE", "SFSUBJDESC", "SFSUBJUNITS"))
+                if (databaseHelper.CheckAndFetchFromDB(RequisiteTextBox.Text, "SFSUBJCODE", query, "SFSUBJDESC", "SFSUBJUNITS"))
                 {
                     index = SubjectDataGridView.Rows.Add();
                     foreach (string[] result in databaseHelper.resultList)

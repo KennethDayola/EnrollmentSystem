@@ -27,7 +27,6 @@ namespace EnrollmentSystem
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(TimeStartTimePicker.Value.TimeOfDay.ToString());
             if (ValidateClrMethods.AreTextBoxesEmpty(SubjectEDPCodeTextBox, SubjectCodeTextBox, DaysTextBox, SectionTextBox,
                 RoomTextBox, SchoolYearTextBox) || ValidateClrMethods.AreComboBoxesEmpty (XMComboBox))
             {
@@ -139,6 +138,29 @@ namespace EnrollmentSystem
         {
             if (closedDirectly)
                 Application.Exit();
+        }
+
+        private void SubjectEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closedDirectly = false;
+            SubjectEntry subjectEntry = new SubjectEntry();
+            this.Hide();
+            subjectEntry.Show();
+            this.Close();
+        }
+
+        private void StudentEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closedDirectly = false;
+            StudentEntry studentEntry = new StudentEntry();
+            this.Hide();
+            studentEntry.Show();
+            this.Close();
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
  }

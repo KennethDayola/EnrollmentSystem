@@ -52,7 +52,12 @@ namespace EnrollmentSystem
             return found;
         }
 
-        public void FetchDataFromDB(string query, params string[] additionalColumns)
+        /// <summary>
+        /// fetches data from the database based on the query and columns provided
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="columns"></param>
+        public void FetchDataFromDB(string query, params string[] columns)
         {
             dbConnection.Open();
             dbCommand = dbConnection.CreateCommand();
@@ -61,7 +66,7 @@ namespace EnrollmentSystem
             while (dbDataReader.Read())
             {
                 List<string> rowData = new List<string>();
-                foreach (string column in additionalColumns)
+                foreach (string column in columns)
                 {
                     rowData.Add(dbDataReader[column].ToString());
                 }
@@ -69,6 +74,7 @@ namespace EnrollmentSystem
             }
             dbConnection.Close();
         }
+
         /// <summary>
         /// checks if specified data is already in the database and fetches data based on the additional columns provided
         /// </summary>

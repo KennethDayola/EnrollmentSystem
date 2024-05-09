@@ -136,9 +136,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ExitToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(69, 147);
+            this.menuStrip1.Location = new System.Drawing.Point(71, 147);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(97, 38);
+            this.menuStrip1.Size = new System.Drawing.Size(95, 38);
             this.menuStrip1.TabIndex = 28;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -147,7 +147,7 @@
             this.ExitToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.5F);
             this.ExitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(90, 32);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(88, 32);
             this.ExitToolStripMenuItem.Text = "🚪 Exit";
             this.ExitToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
@@ -162,9 +162,9 @@
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem});
             this.menuStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip2.Location = new System.Drawing.Point(70, 100);
+            this.menuStrip2.Location = new System.Drawing.Point(72, 100);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(96, 38);
+            this.menuStrip2.Size = new System.Drawing.Size(94, 38);
             this.menuStrip2.TabIndex = 27;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -176,7 +176,7 @@
             this.FileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.5F);
             this.FileToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
-            this.FileToolStripMenuItem.Size = new System.Drawing.Size(89, 32);
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(87, 32);
             this.FileToolStripMenuItem.Text = "🏠 File";
             this.FileToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.FileToolStripMenuItem.DropDownClosed += new System.EventHandler(this.FileToolStripMenuItem_DropDownClosed);
@@ -342,7 +342,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(50)))), ((int)(((byte)(57)))));
+            this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label17.Location = new System.Drawing.Point(275, 366);
@@ -365,7 +365,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(50)))), ((int)(((byte)(57)))));
+            this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label16.Location = new System.Drawing.Point(458, 306);
@@ -388,7 +388,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(50)))), ((int)(((byte)(57)))));
+            this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label15.Location = new System.Drawing.Point(391, 306);
@@ -411,7 +411,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(50)))), ((int)(((byte)(57)))));
+            this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label14.Location = new System.Drawing.Point(277, 238);
@@ -434,7 +434,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(50)))), ((int)(((byte)(57)))));
+            this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label11.Location = new System.Drawing.Point(280, 306);
@@ -457,7 +457,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(50)))), ((int)(((byte)(57)))));
+            this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label10.Location = new System.Drawing.Point(274, 173);
@@ -480,7 +480,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(50)))), ((int)(((byte)(57)))));
+            this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label9.Location = new System.Drawing.Point(274, 111);
