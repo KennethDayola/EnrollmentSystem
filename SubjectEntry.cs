@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
@@ -12,9 +13,9 @@ using System.Windows.Forms;
 namespace EnrollmentSystem
 {
     public partial class SubjectEntry : Form
-    {
-        string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\johnk\source\repos\EnrollmentSystem\Dayola.accdb";
+    {    
         bool closedDirectly = true;
+        string query = "Select * From SUBJECTFILE";
         public SubjectEntry()
         {
             InitializeComponent();
@@ -22,34 +23,25 @@ namespace EnrollmentSystem
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            DatabaseHelper databaseHelper = new DatabaseHelper();
+
             if (ValidateClrMethods.AreTextBoxesEmpty(SubjectCodeTextBox, DescriptionTextBox, UnitsTextBox, CurriculumYearTextBox) ||
                 ValidateClrMethods.AreComboBoxesEmpty(OfferingComboBox, CategoryComboBox, CourseCodeComboBox))
             {
                 MessageBox.Show("Please fill out all required fields before proceeding");
                 return;
             }
-
-            OleDbConnection thisConnection = new OleDbConnection(connectionString);
-            string Ole = "Select * From SUBJECTFILE";
-            OleDbDataAdapter thisAdapter = new OleDbDataAdapter(Ole, thisConnection);
-            OleDbCommandBuilder thisBuilder = new OleDbCommandBuilder(thisAdapter);
             
-            thisConnection.Open();
-            OleDbCommand thisCommand = thisConnection.CreateCommand();
-            thisCommand.CommandText = Ole;
-            OleDbDataReader thisDataReader = thisCommand.ExecuteReader();
-            while (thisDataReader.Read())
+            databaseHelper.ConnectToDatabase(query);
+
+            if (databaseHelper.CheckDataInDB(SubjectCodeTextBox.Text, "SFSUBJCODE", query))
             {
-                if (thisDataReader["SFSUBJCODE"].ToString().Trim().ToUpper() == SubjectCodeTextBox.Text.Trim().ToUpper())
-                {
-                    MessageBox.Show("Current subject code is already on the database");
-                    return;
-                }
+                MessageBox.Show("Current subject code is already in the database");
+                return;
             }
-            thisConnection.Close();
 
             DataSet thisDataset = new DataSet();
-            thisAdapter.Fill(thisDataset, "SubjectFile");
+            databaseHelper.dbDataAdapter.Fill(thisDataset, "SubjectFile");
 
             DataRow thisRow = thisDataset.Tables["SubjectFile"].NewRow();
             thisRow["SFSUBJCODE"] = SubjectCodeTextBox.Text;
@@ -62,7 +54,7 @@ namespace EnrollmentSystem
             thisRow["SFSUBJCURRCODE"] = CurriculumYearTextBox.Text;
 
             thisDataset.Tables["SubjectFile"].Rows.Add(thisRow);
-            thisAdapter.Update(thisDataset, "SubjectFile");
+            databaseHelper.dbDataAdapter.Update(thisDataset, "SubjectFile");
 
             MessageBox.Show("Recorded");
         }
@@ -71,50 +63,28 @@ namespace EnrollmentSystem
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                for (int i = 0; i < SubjectDataGridView.RowCount - 1; i++)
+                if (ValidateClrMethods.CheckDataInDGV(RequisiteTextBox.Text, SubjectDataGridView, "SubjectCodeColumn"))
                 {
-                    if (SubjectDataGridView.Rows[i].Cells["SubjectCodeColumn"].Value.ToString().Trim().ToUpper() == RequisiteTextBox.Text.Trim().ToUpper())
-                    {
-                        MessageBox.Show("Current subject code already on the data grid");
-                        return;
-                    }
+                    MessageBox.Show("Current subject code is already in the data grid");
+                    return;
                 }
 
-                OleDbConnection thisConnection = new OleDbConnection(connectionString);
-                thisConnection.Open();
-
-                OleDbCommand thisCommand = thisConnection.CreateCommand();
-                // string sql = "SELECT * SUBJECTFILE";
-                thisCommand.CommandText = "SELECT * from SUBJECTFILE";
-
-                OleDbDataReader thisDataReader = thisCommand.ExecuteReader();
-                bool found = false;
-                string subjectCode = "";
-                string description = "";
-                string units = "";
-
-                while (thisDataReader.Read())
-                {
-                    if (thisDataReader["SFSUBJCODE"].ToString().Trim().ToUpper() == RequisiteTextBox.Text.Trim().ToUpper())
-                    {
-                        found = true;
-                        subjectCode = thisDataReader["SFSUBJCODE"].ToString();
-                        description = thisDataReader["SFSUBJDESC"].ToString();
-                        units = thisDataReader["SFSUBJUNITS"].ToString();
-                        break;
-                    }
-                }
+                DatabaseHelper databaseHelper = new DatabaseHelper();
+                databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
 
                 int index;
-                if (found == false)
-                    MessageBox.Show("Subject Code Not Found");
-                else
+                if (databaseHelper.CheckAndFetchFromDB(RequisiteTextBox.Text, "SFSUBJCODE", query, "SFSUBJCODE", "SFSUBJDESC", "SFSUBJUNITS"))
                 {
                     index = SubjectDataGridView.Rows.Add();
-                    SubjectDataGridView.Rows[index].Cells["SubjectCodeColumn"].Value = subjectCode;
-                    SubjectDataGridView.Rows[index].Cells["DescriptionColumn"].Value = description;
-                    SubjectDataGridView.Rows[index].Cells["UnitsColumn"].Value = units;
+                    foreach (string[] result in databaseHelper.resultList)
+                    {
+                        SubjectDataGridView.Rows[index].Cells["SubjectCodeColumn"].Value = result[0];
+                        SubjectDataGridView.Rows[index].Cells["DescriptionColumn"].Value = result[1];
+                        SubjectDataGridView.Rows[index].Cells["UnitsColumn"].Value = result[2];
+                    }
                 }
+                else
+                    MessageBox.Show("Subject Code Not Found");
             }
         }
 

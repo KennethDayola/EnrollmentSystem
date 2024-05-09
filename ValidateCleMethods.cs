@@ -60,24 +60,5 @@ namespace EnrollmentSystem
                 comboBox.SelectedIndex = -1;
             }
         }
-
-        /// <summary>
-        /// checks if specified data is already in the data grid view
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="dgv"></param>
-        /// <param name="column"></param>
-        /// <returns></returns>
-        public static bool CheckDataInDGV(string value, DataGridView dgv, string column)
-        {
-            for (int i = 0; i < dgv.RowCount - 1; i++)
-            {
-                if (dgv.Rows[i].Cells[column].Value.ToString().Trim().ToUpper() == value.Trim().ToUpper())
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
     }
 }
