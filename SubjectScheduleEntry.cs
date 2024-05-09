@@ -14,7 +14,6 @@ namespace EnrollmentSystem
 {
     public partial class SubjectScheduleEntry : Form
     {
-        string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\johnk\source\repos\EnrollmentSystem\Dayola.accdb";
         List<string> subjCodes = new List<string>();
         List<string> subjDescs = new List<string>();
         bool foundSubject = false;
@@ -23,11 +22,12 @@ namespace EnrollmentSystem
         public SubjectScheduleEntry()
         {
             InitializeComponent();
-            GetSubjAndDescFromTable();
+            GetDescriptionFromTable();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(TimeStartTimePicker.Value.TimeOfDay.ToString());
             if (ValidateClrMethods.AreTextBoxesEmpty(SubjectEDPCodeTextBox, SubjectCodeTextBox, DaysTextBox, SectionTextBox,
                 RoomTextBox, SchoolYearTextBox) || ValidateClrMethods.AreComboBoxesEmpty (XMComboBox))
             {
@@ -50,27 +50,18 @@ namespace EnrollmentSystem
                 return;
             }
 
-            OleDbConnection thisConnection = new OleDbConnection(connectionString);
-            string Ole = "Select * From SUBJECTSCHEDFILE";
-            OleDbDataAdapter thisAdapter = new OleDbDataAdapter(Ole, thisConnection);
-            OleDbCommandBuilder thisBuilder = new OleDbCommandBuilder(thisAdapter);
+            DatabaseHelper databaseHelper = new DatabaseHelper();
+            string query = "Select * From SUBJECTSCHEDFILE";
+            databaseHelper.ConnectToDatabase(query);
 
-            thisConnection.Open();
-            OleDbCommand thisCommand = thisConnection.CreateCommand();
-            thisCommand.CommandText = Ole;
-            OleDbDataReader thisDataReader = thisCommand.ExecuteReader();
-            while (thisDataReader.Read())
-            {
-                if (thisDataReader["SSFEDPCODE"].ToString().Trim().ToUpper() == SubjectEDPCodeTextBox.Text.Trim().ToUpper())
-                {
-                    MessageBox.Show("Current subject code is already on the database");
-                    return;
-                }
+            if (databaseHelper.CheckDataInDB(SubjectEDPCodeTextBox.Text, "SSFEDPCODE", query)) 
+            { 
+                MessageBox.Show("Current subject code is already on the database");
+                return;
             }
-            thisConnection.Close();
-
+            
             DataSet thisDataset = new DataSet();
-            thisAdapter.Fill(thisDataset, "SubjectSchedFile");
+            databaseHelper.dbDataAdapter.Fill(thisDataset, "SubjectSchedFile");
 
             DataRow thisRow = thisDataset.Tables["SubjectSchedFile"].NewRow();
             thisRow["SSFEDPCODE"] = SubjectEDPCodeTextBox.Text;
@@ -85,34 +76,24 @@ namespace EnrollmentSystem
             thisRow["SSFSCHOOLYEAR"] = SchoolYearTextBox.Text;
 
             thisDataset.Tables["SubjectSchedFile"].Rows.Add(thisRow);
-            thisAdapter.Update(thisDataset, "SubjectSchedFile");
+            databaseHelper.dbDataAdapter.Update(thisDataset, "SubjectSchedFile");
 
             MessageBox.Show("Recorded");
         }
-
+        
         /// <summary>
-        /// gets subjects and corresponding description from table
+        /// returns subjects with corresponding description from table subjectFile
         /// </summary>
-        /// <returns></returns>
-        private void GetSubjAndDescFromTable()
+        private void GetDescriptionFromTable()
         {
-            OleDbConnection thisConnection = new OleDbConnection(connectionString);
-            thisConnection.Open();
-            OleDbCommand thisCommand = thisConnection.CreateCommand();
-            thisCommand.CommandText = "SELECT SFSUBJCODE, SFSUBJDESC from SUBJECTFILE";
-            OleDbDataReader thisDataReader = thisCommand.ExecuteReader();
-
-            while (thisDataReader.Read())
+            DatabaseHelper databaseHelper = new DatabaseHelper();
+            databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
+            string query = "Select * From SUBJECTFILE";
+            databaseHelper.FetchDataFromDB(query, "SFSUBJCODE", "SFSUBJDESC");
+            foreach (string[] row in databaseHelper.resultList)
             {
-                subjCodes.Add(thisDataReader.GetString(0));
-                subjDescs.Add(thisDataReader.GetString(1));
-                //if (thisDataReader["SFSUBJCODE"].ToString().Trim().ToUpper() == SubjectCodeTextBox.Text.Trim().ToUpper())
-                //{
-                //    DescriptionLabel.Text = thisDataReader["SFSUBJDESC"].ToString();
-                //    break;
-                //}
-                //else
-                //    DescriptionLabel.Text = "";
+                subjCodes.Add(row[0]);
+                subjDescs.Add(row[1]);
             }
         }
 

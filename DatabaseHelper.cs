@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
+using System.Drawing;
 
 namespace EnrollmentSystem
 {
@@ -51,6 +52,23 @@ namespace EnrollmentSystem
             return found;
         }
 
+        public void FetchDataFromDB(string query, params string[] additionalColumns)
+        {
+            dbConnection.Open();
+            dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = query;
+            dbDataReader = dbCommand.ExecuteReader();
+            while (dbDataReader.Read())
+            {
+                List<string> rowData = new List<string>();
+                foreach (string column in additionalColumns)
+                {
+                    rowData.Add(dbDataReader[column].ToString());
+                }
+                resultList.Add(rowData.ToArray());
+            }
+            dbConnection.Close();
+        }
         /// <summary>
         /// checks if specified data is already in the database and fetches data based on the additional columns provided
         /// </summary>

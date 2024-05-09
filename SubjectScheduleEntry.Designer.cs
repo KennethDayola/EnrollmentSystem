@@ -268,6 +268,7 @@
             // XMComboBox
             // 
             this.XMComboBox.BackColor = System.Drawing.Color.LightGray;
+            this.XMComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMComboBox.FormattingEnabled = true;
             this.XMComboBox.Items.AddRange(new object[] {
             "AM",

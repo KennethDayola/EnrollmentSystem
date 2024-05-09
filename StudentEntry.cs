@@ -40,27 +40,18 @@ namespace EnrollmentSystem
                 return;
             }
 
-            OleDbConnection thisConnection = new OleDbConnection(connectionString);
-            string Ole = "Select * From STUDENTFILE";
-            OleDbDataAdapter thisAdapter = new OleDbDataAdapter(Ole, thisConnection);
-            OleDbCommandBuilder thisBuilder = new OleDbCommandBuilder(thisAdapter);
+            DatabaseHelper databaseHelper = new DatabaseHelper();
+            string query = "Select * From STUDENTFILE";
+            databaseHelper.ConnectToDatabase(query);
 
-            thisConnection.Open();
-            OleDbCommand thisCommand = thisConnection.CreateCommand();
-            thisCommand.CommandText = Ole;
-            OleDbDataReader thisDataReader = thisCommand.ExecuteReader();
-            while (thisDataReader.Read())
+            if (databaseHelper.CheckDataInDB(IDNumTextBox.Text, "STFSTUDID", query))
             {
-                if (thisDataReader["STFSTUDID"].ToString().Trim().ToUpper() == IDNumTextBox.Text.Trim().ToUpper())
-                {
-                    MessageBox.Show("Current ID number is already on the database");
-                    return;
-                }
+                MessageBox.Show("Current ID number is already on the database");
+                return;
             }
-            thisConnection.Close();
 
             DataSet thisDataset = new DataSet();
-            thisAdapter.Fill(thisDataset, "StudentFile");
+            databaseHelper.dbDataAdapter.Fill(thisDataset, "StudentFile");
 
             DataRow thisRow = thisDataset.Tables["StudentFile"].NewRow();
             thisRow["STFSTUDID"] = IDNumTextBox.Text;
@@ -73,7 +64,7 @@ namespace EnrollmentSystem
             thisRow["STFSTUDSTATUS"] = "AC";
 
             thisDataset.Tables["StudentFile"].Rows.Add(thisRow);
-            thisAdapter.Update(thisDataset, "StudentFile");
+            databaseHelper.dbDataAdapter.Update(thisDataset, "StudentFile");
 
             MessageBox.Show("Recorded");
         }

@@ -109,5 +109,8 @@
   <ItemGroup>
     <None Include="gradient.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ucPic.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
