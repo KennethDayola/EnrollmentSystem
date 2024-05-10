@@ -136,9 +136,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ExitToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(71, 147);
+            this.menuStrip1.Location = new System.Drawing.Point(69, 147);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(95, 38);
+            this.menuStrip1.Size = new System.Drawing.Size(97, 38);
             this.menuStrip1.TabIndex = 28;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -162,9 +162,9 @@
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem});
             this.menuStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip2.Location = new System.Drawing.Point(72, 100);
+            this.menuStrip2.Location = new System.Drawing.Point(70, 100);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(94, 38);
+            this.menuStrip2.Size = new System.Drawing.Size(96, 38);
             this.menuStrip2.TabIndex = 27;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -275,7 +275,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::EnrollmentSystem.Properties.Resources.ucPic;
+            this.panel1.BackgroundImage = global::EnrollmentSystem.Properties.Resources.libraryGirlStudent;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.CancelButton);
             this.panel1.Controls.Add(this.SaveButton);

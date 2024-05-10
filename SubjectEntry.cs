@@ -31,10 +31,15 @@ namespace EnrollmentSystem
                 MessageBox.Show("Please fill out all required fields before proceeding");
                 return;
             }
-            
+            if (!int.TryParse(UnitsTextBox.Text, out _) || UnitsTextBox.Text.Length > 1)
+            {
+                MessageBox.Show("Units must be an integer and in single digits only");
+                return;
+            }
+
             databaseHelper.ConnectToDatabase(query);
 
-            if (databaseHelper.CheckDataInDB(SubjectCodeTextBox.Text, "SFSUBJCODE", query))
+            if (databaseHelper.CheckIfDataInDB(SubjectCodeTextBox.Text, "SFSUBJCODE", query))
             {
                 MessageBox.Show("Current subject code is already in the database");
                 return;
@@ -63,7 +68,7 @@ namespace EnrollmentSystem
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                if (ValidateClrMethods.CheckDataInDGV(RequisiteTextBox.Text, SubjectDataGridView, "SubjectCodeColumn"))
+                if (ValidateClrMethods.CheckIfDataInDGV(RequisiteTextBox.Text, SubjectDataGridView, "SubjectCodeColumn"))
                 {
                     MessageBox.Show("Current subject code is already in the data grid");
                     return;

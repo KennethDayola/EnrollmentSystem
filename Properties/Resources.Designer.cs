@@ -63,16 +63,6 @@ namespace EnrollmentSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _0x0 {
-            get {
-                object obj = ResourceManager.GetObject("0x0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap bookPattern {
             get {
                 object obj = ResourceManager.GetObject("bookPattern", resourceCulture);
@@ -93,9 +83,9 @@ namespace EnrollmentSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap gradient4Schedule {
+        internal static System.Drawing.Bitmap gradientAndLineScheduleEntry {
             get {
-                object obj = ResourceManager.GetObject("gradient4Schedule", resourceCulture);
+                object obj = ResourceManager.GetObject("gradientAndLineScheduleEntry", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +93,9 @@ namespace EnrollmentSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap gradientAndLineScheduleEntry {
+        internal static System.Drawing.Bitmap libraryGirlStudent {
             get {
-                object obj = ResourceManager.GetObject("gradientAndLineScheduleEntry", resourceCulture);
+                object obj = ResourceManager.GetObject("libraryGirlStudent", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

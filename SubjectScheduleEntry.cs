@@ -53,7 +53,7 @@ namespace EnrollmentSystem
             string query = "Select * From SUBJECTSCHEDFILE";
             databaseHelper.ConnectToDatabase(query);
 
-            if (databaseHelper.CheckDataInDB(SubjectEDPCodeTextBox.Text, "SSFEDPCODE", query)) 
+            if (databaseHelper.CheckIfDataInDB(SubjectEDPCodeTextBox.Text, "SSFEDPCODE", query)) 
             { 
                 MessageBox.Show("Current subject code is already on the database");
                 return;

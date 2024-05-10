@@ -147,7 +147,7 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Segoe UI Variable Display Semil", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(53, 49);
+            this.label17.Location = new System.Drawing.Point(53, 50);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(55, 37);
             this.label17.TabIndex = 25;
@@ -447,7 +447,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel4.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel4.Location = new System.Drawing.Point(599, 6);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(10, 591);
@@ -487,7 +487,7 @@
             this.ExitToolStripMenuItem.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(149, 25);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(78, 25);
             this.ExitToolStripMenuItem.Text = "🚪 Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -499,7 +499,7 @@
             this.FileToolStripMenuItem.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FileToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
-            this.FileToolStripMenuItem.Size = new System.Drawing.Size(149, 25);
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(78, 25);
             this.FileToolStripMenuItem.Text = "🏚️ File";
             // 
             // SubjectEntryToolStripMenuItem

@@ -113,19 +113,16 @@
     <None Include="ucPic.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="0x0.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="UC1_2024_03_18_17_52_58.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="gradient4Schedule.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lineline.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="gradientAndLineScheduleEntry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libraryGirlStudent.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

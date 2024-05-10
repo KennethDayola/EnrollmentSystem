@@ -44,7 +44,7 @@ namespace EnrollmentSystem
             string query = "Select * From STUDENTFILE";
             databaseHelper.ConnectToDatabase(query);
 
-            if (databaseHelper.CheckDataInDB(IDNumTextBox.Text, "STFSTUDID", query))
+            if (databaseHelper.CheckIfDataInDB(IDNumTextBox.Text, "STFSTUDID", query))
             {
                 MessageBox.Show("Current ID number is already on the database");
                 return;

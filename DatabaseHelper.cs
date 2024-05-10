@@ -33,7 +33,7 @@ namespace EnrollmentSystem
         /// <param name="columnName"></param>
         /// <param name="query"></param>
         /// <returns></returns>
-        public bool CheckDataInDB(string value, string columnName, string query)
+        public bool CheckIfDataInDB(string value, string columnName, string query)
         {
             bool found = false;
             dbConnection.Open();

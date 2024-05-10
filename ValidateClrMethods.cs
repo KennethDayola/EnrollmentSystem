@@ -68,7 +68,7 @@ namespace EnrollmentSystem
         /// <param name="dgv"></param>
         /// <param name="column"></param>
         /// <returns></returns>
-        public static bool CheckDataInDGV(string value, DataGridView dgv, string column)
+        public static bool CheckIfDataInDGV(string value, DataGridView dgv, string column)
         {
             for (int i = 0; i < dgv.RowCount - 1; i++)
             {
