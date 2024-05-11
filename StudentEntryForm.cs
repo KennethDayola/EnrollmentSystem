@@ -12,11 +12,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EnrollmentSystem
 {
-    public partial class StudentEntry : Form
+    public partial class StudentEntryForm : Form
     {
         string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\johnk\source\repos\EnrollmentSystem\Dayola.accdb";
         bool closedDirectly = true;
-        public StudentEntry()
+        public StudentEntryForm()
         {
             InitializeComponent();
         }
@@ -90,18 +90,18 @@ namespace EnrollmentSystem
         private void SubjectEntryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             closedDirectly = false;
-            SubjectEntry subjectEntry= new SubjectEntry();
+            SubjectEntryForm subjectEntryForm= new SubjectEntryForm();
             this.Hide();
-            subjectEntry.Show();
+            subjectEntryForm.Show();
             this.Close();
         }
 
         private void SubjectScheduleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             closedDirectly = false;
-            SubjectScheduleEntry subjectScheduleEntry = new SubjectScheduleEntry();
+            SubjectScheduleEntryForm subjectScheduleEntryForm = new SubjectScheduleEntryForm();
             this.Hide();
-            subjectScheduleEntry.Show();
+            subjectScheduleEntryForm.Show();
             this.Close();
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace EnrollmentSystem
 {
-    partial class SubjectScheduleEntry
+    partial class SubjectScheduleEntryForm
     {
         /// <summary>
         /// Required designer variable.
@@ -72,6 +72,7 @@
             this.XMComboBox = new System.Windows.Forms.ComboBox();
             this.SchoolYearTextBox = new System.Windows.Forms.TextBox();
             this.RoomTextBox = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -135,6 +136,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.panel5);
             this.panel1.Location = new System.Drawing.Point(-23, 13);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
@@ -146,7 +148,7 @@
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Segoe UI Variable Display Semil", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(77)))), ((int)(((byte)(140)))));
             this.label17.Location = new System.Drawing.Point(53, 50);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(55, 37);
@@ -158,7 +160,7 @@
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(55)))), ((int)(((byte)(74)))));
             this.label11.Location = new System.Drawing.Point(78, 49);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(338, 38);
@@ -170,7 +172,7 @@
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(55)))), ((int)(((byte)(130)))));
             this.label12.Location = new System.Drawing.Point(168, 30);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(42, 18);
@@ -224,7 +226,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(97)))), ((int)(((byte)(192)))));
             this.label13.Location = new System.Drawing.Point(416, 18);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(108, 20);
@@ -447,7 +449,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(39)))), ((int)(((byte)(91)))));
             this.panel4.Location = new System.Drawing.Point(599, 6);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(10, 591);
@@ -536,7 +538,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(97)))), ((int)(((byte)(192)))));
             this.label14.Location = new System.Drawing.Point(6, 18);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(132, 20);
@@ -588,7 +590,15 @@
             this.RoomTextBox.Size = new System.Drawing.Size(100, 22);
             this.RoomTextBox.TabIndex = 20;
             // 
-            // SubjectScheduleEntry
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel5.Location = new System.Drawing.Point(590, 6);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(10, 581);
+            this.panel5.TabIndex = 39;
+            // 
+            // SubjectScheduleEntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -602,7 +612,7 @@
             this.Controls.Add(this.label10);
             this.ForeColor = System.Drawing.Color.DimGray;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "SubjectScheduleEntry";
+            this.Name = "SubjectScheduleEntryForm";
             this.Text = " ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SubjectScheduleEntry_FormClosing);
             this.panel3.ResumeLayout(false);
@@ -667,6 +677,7 @@
         private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SubjectEntryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StudentEntryToolStripMenuItem;
+        private System.Windows.Forms.Panel panel5;
     }
 }
 

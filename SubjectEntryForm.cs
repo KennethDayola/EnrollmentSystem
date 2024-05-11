@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace EnrollmentSystem
 {
-    public partial class SubjectEntry : Form
+    public partial class SubjectEntryForm : Form
     {    
         bool closedDirectly = true;
         string query = "Select * From SUBJECTFILE";
-        public SubjectEntry()
+        public SubjectEntryForm()
         {
             InitializeComponent();
         }
@@ -117,18 +117,18 @@ namespace EnrollmentSystem
         private void SubjectScheduleEntryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             closedDirectly = false;
-            SubjectScheduleEntry subjectScheduleEntry = new SubjectScheduleEntry();
+            SubjectScheduleEntryForm subjectScheduleEntryForm = new SubjectScheduleEntryForm();
             this.Hide();
-            subjectScheduleEntry.Show();
+            subjectScheduleEntryForm.Show();
             this.Close();
         }
 
         private void studentEntryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             closedDirectly = false;
-            StudentEntry studentEntry = new StudentEntry();
+            StudentEntryForm studentEntryForm = new StudentEntryForm();
             this.Hide();
-            studentEntry.Show();
+            studentEntryForm.Show();
             this.Close();
         }
 
@@ -136,6 +136,12 @@ namespace EnrollmentSystem
         {
             if (closedDirectly)
                 Application.Exit();
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+            EnrollmentEntryForm enrollmentEntryForm = new EnrollmentEntryForm();
+            enrollmentEntryForm.Show();
         }
     }
  }

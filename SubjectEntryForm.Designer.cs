@@ -1,6 +1,6 @@
 ﻿namespace EnrollmentSystem
 {
-    partial class SubjectEntry
+    partial class SubjectEntryForm
     {
         /// <summary>
         /// Required designer variable.
@@ -88,6 +88,7 @@
             this.label11.Size = new System.Drawing.Size(201, 37);
             this.label11.TabIndex = 4;
             this.label11.Text = "    Subject Entry";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label9
             // 
@@ -319,6 +320,7 @@
             this.SubjectDataGridView.Location = new System.Drawing.Point(47, 74);
             this.SubjectDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SubjectDataGridView.Name = "SubjectDataGridView";
+            this.SubjectDataGridView.ReadOnly = true;
             this.SubjectDataGridView.RowHeadersVisible = false;
             this.SubjectDataGridView.RowHeadersWidth = 51;
             this.SubjectDataGridView.RowTemplate.Height = 24;
@@ -330,24 +332,28 @@
             this.SubjectCodeColumn.HeaderText = "Subject Code";
             this.SubjectCodeColumn.MinimumWidth = 6;
             this.SubjectCodeColumn.Name = "SubjectCodeColumn";
+            this.SubjectCodeColumn.ReadOnly = true;
             // 
             // DescriptionColumn
             // 
             this.DescriptionColumn.HeaderText = "Description";
             this.DescriptionColumn.MinimumWidth = 6;
             this.DescriptionColumn.Name = "DescriptionColumn";
+            this.DescriptionColumn.ReadOnly = true;
             // 
             // UnitsColumn
             // 
             this.UnitsColumn.HeaderText = "Units";
             this.UnitsColumn.MinimumWidth = 6;
             this.UnitsColumn.Name = "UnitsColumn";
+            this.UnitsColumn.ReadOnly = true;
             // 
             // CoPreRequisiteColumn
             // 
             this.CoPreRequisiteColumn.HeaderText = "Co/Pre";
             this.CoPreRequisiteColumn.MinimumWidth = 6;
             this.CoPreRequisiteColumn.Name = "CoPreRequisiteColumn";
+            this.CoPreRequisiteColumn.ReadOnly = true;
             // 
             // CancelButton
             // 
@@ -558,7 +564,7 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Subject Code";
             // 
-            // SubjectEntry
+            // SubjectEntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -575,7 +581,7 @@
             this.ForeColor = System.Drawing.Color.DimGray;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "SubjectEntry";
+            this.Name = "SubjectEntryForm";
             this.Text = " ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SubjectEntry_FormClosing);
             this.panel3.ResumeLayout(false);

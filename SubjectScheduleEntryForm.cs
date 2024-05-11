@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace EnrollmentSystem
 {
-    public partial class SubjectScheduleEntry : Form
+    public partial class SubjectScheduleEntryForm : Form
     {
         List<string> subjCodes = new List<string>();
         List<string> subjDescs = new List<string>();
         bool foundSubject = false;
         bool closedDirectly = true;
 
-        public SubjectScheduleEntry()
+        public SubjectScheduleEntryForm()
         {
             InitializeComponent();
             GetDescriptionFromTable();
@@ -143,18 +143,18 @@ namespace EnrollmentSystem
         private void SubjectEntryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             closedDirectly = false;
-            SubjectEntry subjectEntry = new SubjectEntry();
+            SubjectEntryForm subjectEntryForm = new SubjectEntryForm();
             this.Hide();
-            subjectEntry.Show();
+            subjectEntryForm.Show();
             this.Close();
         }
 
         private void StudentEntryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             closedDirectly = false;
-            StudentEntry studentEntry = new StudentEntry();
+            StudentEntryForm studentEntryForm = new StudentEntryForm();
             this.Hide();
-            studentEntry.Show();
+            studentEntryForm.Show();
             this.Close();
         }
 

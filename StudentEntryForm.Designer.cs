@@ -1,6 +1,6 @@
 ﻿namespace EnrollmentSystem
 {
-    partial class StudentEntry
+    partial class StudentEntryForm
     {
         /// <summary>
         /// Required designer variable.
