@@ -39,6 +39,7 @@
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubjectScheduleEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enrollmentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -88,7 +89,6 @@
             this.label11.Size = new System.Drawing.Size(201, 37);
             this.label11.TabIndex = 4;
             this.label11.Text = "    Subject Entry";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label9
             // 
@@ -151,9 +151,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ExitToolStripMenuItem,
             this.FileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(732, 43);
+            this.menuStrip1.Location = new System.Drawing.Point(582, 43);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(170, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(320, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -171,7 +171,8 @@
             // 
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SubjectScheduleEntryToolStripMenuItem,
-            this.studentEntryToolStripMenuItem});
+            this.studentEntryToolStripMenuItem,
+            this.enrollmentEntryToolStripMenuItem});
             this.FileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FileToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
@@ -195,6 +196,14 @@
             this.studentEntryToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
             this.studentEntryToolStripMenuItem.Text = "👩‍🎓 Student Entry";
             this.studentEntryToolStripMenuItem.Click += new System.EventHandler(this.studentEntryToolStripMenuItem_Click);
+            // 
+            // enrollmentEntryToolStripMenuItem
+            // 
+            this.enrollmentEntryToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.enrollmentEntryToolStripMenuItem.Name = "enrollmentEntryToolStripMenuItem";
+            this.enrollmentEntryToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
+            this.enrollmentEntryToolStripMenuItem.Text = "📝 Enrollment Entry";
+            this.enrollmentEntryToolStripMenuItem.Click += new System.EventHandler(this.enrollmentEntryToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -642,6 +651,7 @@
         private System.Windows.Forms.ToolStripMenuItem SubjectScheduleEntryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem studentEntryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enrollmentEntryToolStripMenuItem;
     }
 }
 

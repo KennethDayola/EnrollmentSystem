@@ -60,19 +60,22 @@
             this.label7 = new System.Windows.Forms.Label();
             this.SectionTextBox = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubjectEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StudentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enrollmentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.ClearButton = new System.Windows.Forms.Button();
             this.XMComboBox = new System.Windows.Forms.ComboBox();
             this.SchoolYearTextBox = new System.Windows.Forms.TextBox();
             this.RoomTextBox = new System.Windows.Forms.TextBox();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.MaxSizeTextBox = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -194,6 +197,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.SaveButton);
             this.groupBox1.Controls.Add(this.SubjFoundIndicatorLabel);
@@ -295,7 +299,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(478, 249);
+            this.label8.Location = new System.Drawing.Point(478, 263);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 20);
             this.label8.TabIndex = 19;
@@ -326,7 +330,7 @@
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(457, 165);
+            this.label18.Location = new System.Drawing.Point(458, 178);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(63, 20);
             this.label18.TabIndex = 27;
@@ -358,7 +362,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(444, 208);
+            this.label16.Location = new System.Drawing.Point(448, 219);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(80, 20);
             this.label16.TabIndex = 25;
@@ -391,7 +395,7 @@
             this.DescriptionLabel.ForeColor = System.Drawing.Color.DimGray;
             this.DescriptionLabel.Location = new System.Drawing.Point(180, 133);
             this.DescriptionLabel.Name = "DescriptionLabel";
-            this.DescriptionLabel.Size = new System.Drawing.Size(227, 22);
+            this.DescriptionLabel.Size = new System.Drawing.Size(196, 22);
             this.DescriptionLabel.TabIndex = 12;
             // 
             // label15
@@ -455,6 +459,14 @@
             this.panel4.Size = new System.Drawing.Size(10, 591);
             this.panel4.TabIndex = 32;
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel5.Location = new System.Drawing.Point(590, 6);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(10, 581);
+            this.panel5.TabIndex = 39;
+            // 
             // panel2
             // 
             this.panel2.BackgroundImage = global::EnrollmentSystem.Properties.Resources.UC1_2024_03_18_17_52_58;
@@ -497,7 +509,8 @@
             // 
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SubjectEntryToolStripMenuItem,
-            this.StudentEntryToolStripMenuItem});
+            this.StudentEntryToolStripMenuItem,
+            this.enrollmentEntryToolStripMenuItem});
             this.FileToolStripMenuItem.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FileToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
@@ -508,7 +521,7 @@
             // 
             this.SubjectEntryToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.SubjectEntryToolStripMenuItem.Name = "SubjectEntryToolStripMenuItem";
-            this.SubjectEntryToolStripMenuItem.Size = new System.Drawing.Size(232, 30);
+            this.SubjectEntryToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
             this.SubjectEntryToolStripMenuItem.Text = "📚 Subject Entry";
             this.SubjectEntryToolStripMenuItem.Click += new System.EventHandler(this.SubjectEntryToolStripMenuItem_Click);
             // 
@@ -516,13 +529,22 @@
             // 
             this.StudentEntryToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.StudentEntryToolStripMenuItem.Name = "StudentEntryToolStripMenuItem";
-            this.StudentEntryToolStripMenuItem.Size = new System.Drawing.Size(232, 30);
+            this.StudentEntryToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
             this.StudentEntryToolStripMenuItem.Text = "👩‍🎓 Student Entry";
             this.StudentEntryToolStripMenuItem.Click += new System.EventHandler(this.StudentEntryToolStripMenuItem_Click);
+            // 
+            // enrollmentEntryToolStripMenuItem
+            // 
+            this.enrollmentEntryToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.enrollmentEntryToolStripMenuItem.Name = "enrollmentEntryToolStripMenuItem";
+            this.enrollmentEntryToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
+            this.enrollmentEntryToolStripMenuItem.Text = "📝 Enrollment Entry";
+            this.enrollmentEntryToolStripMenuItem.Click += new System.EventHandler(this.enrollmentEntryToolStripMenuItem_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.MaxSizeTextBox);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.ClearButton);
             this.groupBox2.Controls.Add(this.XMComboBox);
@@ -566,7 +588,7 @@
             this.XMComboBox.Items.AddRange(new object[] {
             "AM",
             "PM"});
-            this.XMComboBox.Location = new System.Drawing.Point(30, 165);
+            this.XMComboBox.Location = new System.Drawing.Point(27, 178);
             this.XMComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.XMComboBox.Name = "XMComboBox";
             this.XMComboBox.Size = new System.Drawing.Size(76, 24);
@@ -575,7 +597,7 @@
             // SchoolYearTextBox
             // 
             this.SchoolYearTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.SchoolYearTextBox.Location = new System.Drawing.Point(30, 206);
+            this.SchoolYearTextBox.Location = new System.Drawing.Point(27, 219);
             this.SchoolYearTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SchoolYearTextBox.Name = "SchoolYearTextBox";
             this.SchoolYearTextBox.Size = new System.Drawing.Size(100, 22);
@@ -584,19 +606,31 @@
             // RoomTextBox
             // 
             this.RoomTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.RoomTextBox.Location = new System.Drawing.Point(30, 249);
+            this.RoomTextBox.Location = new System.Drawing.Point(27, 262);
             this.RoomTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RoomTextBox.Name = "RoomTextBox";
             this.RoomTextBox.Size = new System.Drawing.Size(100, 22);
             this.RoomTextBox.TabIndex = 20;
             // 
-            // panel5
+            // label20
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel5.Location = new System.Drawing.Point(590, 6);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(10, 581);
-            this.panel5.TabIndex = 39;
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(403, 138);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(131, 20);
+            this.label20.TabIndex = 40;
+            this.label20.Text = "Classroom Max Size";
+            // 
+            // MaxSizeTextBox
+            // 
+            this.MaxSizeTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.MaxSizeTextBox.Location = new System.Drawing.Point(27, 136);
+            this.MaxSizeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaxSizeTextBox.Name = "MaxSizeTextBox";
+            this.MaxSizeTextBox.Size = new System.Drawing.Size(76, 22);
+            this.MaxSizeTextBox.TabIndex = 41;
             // 
             // SubjectScheduleEntryForm
             // 
@@ -678,6 +712,9 @@
         private System.Windows.Forms.ToolStripMenuItem SubjectEntryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StudentEntryToolStripMenuItem;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.ToolStripMenuItem enrollmentEntryToolStripMenuItem;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox MaxSizeTextBox;
     }
 }
 

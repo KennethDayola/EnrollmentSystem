@@ -22,13 +22,13 @@ namespace EnrollmentSystem
         public SubjectScheduleEntryForm()
         {
             InitializeComponent();
-            GetDescriptionFromTable();
+            GetDescriptionFromDB();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
             if (ValidateClrMethods.AreTextBoxesEmpty(SubjectEDPCodeTextBox, SubjectCodeTextBox, DaysTextBox, SectionTextBox,
-                RoomTextBox, SchoolYearTextBox) || ValidateClrMethods.AreComboBoxesEmpty (XMComboBox))
+                RoomTextBox, SchoolYearTextBox, MaxSizeTextBox) || ValidateClrMethods.AreComboBoxesEmpty (XMComboBox))
             {
                 MessageBox.Show("Please fill out all required fields");
                 return;
@@ -73,6 +73,7 @@ namespace EnrollmentSystem
             thisRow["SSFXM"] = XMComboBox.Text;
             thisRow["SSFSECTION"] = SectionTextBox.Text;
             thisRow["SSFSCHOOLYEAR"] = SchoolYearTextBox.Text;
+            thisRow["SSFMAXSIZE"] = MaxSizeTextBox.Text;
 
             thisDataset.Tables["SubjectSchedFile"].Rows.Add(thisRow);
             databaseHelper.dbDataAdapter.Update(thisDataset, "SubjectSchedFile");
@@ -83,7 +84,7 @@ namespace EnrollmentSystem
         /// <summary>
         /// returns subjects with corresponding description from table subjectFile
         /// </summary>
-        private void GetDescriptionFromTable()
+        private void GetDescriptionFromDB()
         {
             DatabaseHelper databaseHelper = new DatabaseHelper();
             databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
@@ -125,7 +126,7 @@ namespace EnrollmentSystem
         private void ClearButton_Click(object sender, EventArgs e)
         {
             ValidateClrMethods.ClearTextBoxes(SubjectEDPCodeTextBox, SubjectCodeTextBox, DaysTextBox, SectionTextBox,
-                RoomTextBox, SchoolYearTextBox);
+                RoomTextBox, SchoolYearTextBox, MaxSizeTextBox);
             ValidateClrMethods.ClearComboBoxes(XMComboBox);
         }
 
@@ -161,6 +162,15 @@ namespace EnrollmentSystem
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void enrollmentEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closedDirectly = false;
+            EnrollmentEntryForm enrollmentEntryForm = new EnrollmentEntryForm();
+            this.Hide();
+            enrollmentEntryForm.Show();
+            this.Close();
         }
     }
  }

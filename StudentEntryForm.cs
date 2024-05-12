@@ -114,5 +114,14 @@ namespace EnrollmentSystem
         {
             FileToolStripMenuItem.ForeColor = Color.Black;
         }
+
+        private void enrollmentEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closedDirectly = false;
+            EnrollmentEntryForm enrollmentEntryForm = new EnrollmentEntryForm();
+            this.Hide();
+            enrollmentEntryForm.Show();
+            this.Close();
+        }
     }
 }

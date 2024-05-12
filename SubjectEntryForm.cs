@@ -33,15 +33,16 @@ namespace EnrollmentSystem
             }
             if (!int.TryParse(UnitsTextBox.Text, out _) || UnitsTextBox.Text.Length > 1)
             {
-                MessageBox.Show("Units must be an integer and in single digits only");
+                MessageBox.Show("Units field must be an integer and in single digits only");
                 return;
             }
 
             databaseHelper.ConnectToDatabase(query);
 
-            if (databaseHelper.CheckIfDataInDB(SubjectCodeTextBox.Text, "SFSUBJCODE", query))
+            if (databaseHelper.CheckIfDataInDB(SubjectCodeTextBox.Text, "SFSUBJCODE", query) 
+                && databaseHelper.CheckIfDataInDB(CourseCodeComboBox.Text, "SFSUBJCOURSECODE", query))
             {
-                MessageBox.Show("Current subject code is already in the database");
+                MessageBox.Show("Current subject code with corresponding course code is already in the database");
                 return;
             }
 
@@ -66,6 +67,7 @@ namespace EnrollmentSystem
 
         private void RequisiteTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // FIX - what if 2 of the same subjcode but diff currcode when pressing enter in textbox
             if (e.KeyChar == (char)Keys.Enter)
             {
                 if (ValidateClrMethods.CheckIfDataInDGV(RequisiteTextBox.Text, SubjectDataGridView, "SubjectCodeColumn"))
@@ -138,10 +140,13 @@ namespace EnrollmentSystem
                 Application.Exit();
         }
 
-        private void label11_Click(object sender, EventArgs e)
+        private void enrollmentEntryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            closedDirectly = false;
             EnrollmentEntryForm enrollmentEntryForm = new EnrollmentEntryForm();
+            this.Hide();
             enrollmentEntryForm.Show();
+            this.Close();
         }
     }
  }

@@ -31,6 +31,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -39,10 +40,10 @@
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubjectEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubjectScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enrollmentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -94,10 +95,10 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(31)))));
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label6);
@@ -105,6 +106,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(189, 579);
             this.panel2.TabIndex = 28;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Sitka Banner Semibold", 15.4F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label2.Location = new System.Drawing.Point(64, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 38);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Student";
             // 
             // panel5
             // 
@@ -136,9 +148,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ExitToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(69, 147);
+            this.menuStrip1.Location = new System.Drawing.Point(71, 147);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(97, 38);
+            this.menuStrip1.Size = new System.Drawing.Size(95, 38);
             this.menuStrip1.TabIndex = 28;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -162,9 +174,9 @@
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem});
             this.menuStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip2.Location = new System.Drawing.Point(70, 100);
+            this.menuStrip2.Location = new System.Drawing.Point(10, 76);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(96, 38);
+            this.menuStrip2.Size = new System.Drawing.Size(156, 62);
             this.menuStrip2.TabIndex = 27;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -172,11 +184,12 @@
             // 
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SubjectEntryToolStripMenuItem,
-            this.SubjectScheduleToolStripMenuItem});
+            this.SubjectScheduleToolStripMenuItem,
+            this.enrollmentEntryToolStripMenuItem});
             this.FileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.5F);
             this.FileToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
-            this.FileToolStripMenuItem.Size = new System.Drawing.Size(87, 32);
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(149, 32);
             this.FileToolStripMenuItem.Text = "🏠 File";
             this.FileToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.FileToolStripMenuItem.DropDownClosed += new System.EventHandler(this.FileToolStripMenuItem_DropDownClosed);
@@ -197,6 +210,14 @@
             this.SubjectScheduleToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
             this.SubjectScheduleToolStripMenuItem.Text = "🕒 Subject Schedule Entry";
             this.SubjectScheduleToolStripMenuItem.Click += new System.EventHandler(this.SubjectScheduleToolStripMenuItem_Click);
+            // 
+            // enrollmentEntryToolStripMenuItem
+            // 
+            this.enrollmentEntryToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.enrollmentEntryToolStripMenuItem.Name = "enrollmentEntryToolStripMenuItem";
+            this.enrollmentEntryToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
+            this.enrollmentEntryToolStripMenuItem.Text = "📝 Enrollment Entry";
+            this.enrollmentEntryToolStripMenuItem.Click += new System.EventHandler(this.enrollmentEntryToolStripMenuItem_Click);
             // 
             // label8
             // 
@@ -223,24 +244,13 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Sitka Banner Semibold", 15.4F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label3.Location = new System.Drawing.Point(84, 58);
+            this.label3.Location = new System.Drawing.Point(85, 55);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 31);
+            this.label3.Size = new System.Drawing.Size(75, 38);
             this.label3.TabIndex = 2;
             this.label3.Text = "Entry";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label2.Location = new System.Drawing.Point(64, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 31);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Student";
             // 
             // label1
             // 
@@ -489,7 +499,7 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "ID Number";
             // 
-            // StudentEntry
+            // StudentEntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -498,7 +508,7 @@
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Name = "StudentEntry";
+            this.Name = "StudentEntryForm";
             this.Padding = new System.Windows.Forms.Padding(50);
             this.Text = "StudentEntryForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentEntry_FormClosing);
@@ -554,5 +564,6 @@
         private System.Windows.Forms.ToolStripMenuItem SubjectScheduleToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enrollmentEntryToolStripMenuItem;
     }
 }
