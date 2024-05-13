@@ -13,7 +13,7 @@ namespace EnrollmentSystem
         public OleDbCommandBuilder dbCommandBuilder;
         public OleDbCommand dbCommand;
         public OleDbDataReader dbDataReader;
-        public List<string[]> resultList = new List<string[]>();
+        public List<string> resultList = new List<string>();
 
         /// <summary>
         /// initializes connection to database
@@ -53,7 +53,7 @@ namespace EnrollmentSystem
         }
 
         /// <summary>
-        /// fetches data from the database based on the query and columns provided
+        /// fetches a row from the database based on the query and columns provided
         /// </summary>
         /// <param name="query"></param>
         /// <param name="columns"></param>
@@ -70,13 +70,13 @@ namespace EnrollmentSystem
                 {
                     rowData.Add(dbDataReader[column].ToString());
                 }
-                resultList.Add(rowData.ToArray());
+                resultList = rowData;
             }
             dbConnection.Close();
         }
 
         /// <summary>
-        /// checks if specified data is already in the database and fetches data based on the additional columns provided
+        /// checks if specified data is already in the database and fetches a row based on the columns provided
         /// </summary>
         /// <param name="value"></param>
         /// <param name="columnName"></param>
@@ -101,7 +101,7 @@ namespace EnrollmentSystem
                     {
                         rowData.Add(dbDataReader[column].ToString());
                     }
-                    resultList.Add(rowData.ToArray());
+                    resultList = rowData;
                 }
             }
             dbConnection.Close();

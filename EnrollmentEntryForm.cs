@@ -16,6 +16,10 @@ namespace EnrollmentSystem
     {
         bool closedDirectly = true;
         bool idFound = false;
+
+        List<int> classroomCurrentSizes = new List<int>();
+
+        // student information
         List<string> studID = new List<string>();
         List<string> studName = new List<string>();
         List<string> studCourse = new List<string>();
@@ -88,25 +92,18 @@ namespace EnrollmentSystem
                 databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
 
                 int index;
-                if (databaseHelper.CheckAndFetchFromDB(EDPTextBox.Text, "SSFEDPCODE", "Select * From SUBJECTSCHEDFILE", 
-                    "SSFSUBJCODE", "SSFSTARTTIME", "SSFENDTIME", "SSFDAYS", "SSFROOM"))
+                if (databaseHelper.CheckAndFetchFromDB(EDPTextBox.Text, "SSFEDPCODE", "Select * From SUBJECTSCHEDFILE",
+                    "SSFSUBJCODE", "SSFSTARTTIME", "SSFENDTIME", "SSFDAYS", "SSFROOM", "SSFMAXSIZE", "SSFCLASSSIZE"))
                 {
-                    List<string[]> temp = new List<string[]>();
-                    foreach (string[] result in databaseHelper.resultList)
-                    {
-                        temp.Add(result);
-                    }
+                    List<string> temp = new List<string>();
+                    temp = databaseHelper.resultList;
 
                     int units = 0;
-                    if (databaseHelper.CheckAndFetchFromDB(temp[0][1], "SFSUBJCODE", "Select * From SUBJECTFILE", "SFSUBJUNITS"))
+                    if (databaseHelper.CheckAndFetchFromDB(temp[1], "SFSUBJCODE", "Select * From SUBJECTFILE", "SFSUBJUNITS"))
                     {
                         index = EnrollmentDataGridView.Rows.Add();
-                        foreach (string[] result in databaseHelper.resultList)
-                        {
-                            MessageBox.Show(result[2]);
-                            EnrollmentDataGridView.Rows[index].Cells["UnitsColumn"].Value = result[2];
-                            units = Convert.ToInt16(EnrollmentDataGridView.Rows[index].Cells["UnitsColumn"].Value);
-                        }
+                        EnrollmentDataGridView.Rows[index].Cells["UnitsColumn"].Value = databaseHelper.resultList[1];
+                        units = Convert.ToInt16(databaseHelper.resultList[1]);
                     }
                     else
                     {
@@ -114,17 +111,50 @@ namespace EnrollmentSystem
                         return;
                     }
 
-                    foreach (string[] result in temp)
+                    int maxSize, currentSize = 0;
+
+                    EnrollmentDataGridView.Rows[index].Cells["EDPCodeColumn"].Value = temp[0];
+                    EnrollmentDataGridView.Rows[index].Cells["SubjectCodeColumn"].Value = temp[1];
+                    EnrollmentDataGridView.Rows[index].Cells["StartTimeColumn"].Value = DateTime.Parse(temp[2]).ToString("hh:mm:tt");
+                    EnrollmentDataGridView.Rows[index].Cells["EndTimeColumn"].Value = DateTime.Parse(temp[3]).ToString("hh:mm:tt");
+                    EnrollmentDataGridView.Rows[index].Cells["DaysColumn"].Value = temp[4];
+                    EnrollmentDataGridView.Rows[index].Cells["RoomColumn"].Value = temp[5];
+                    maxSize = Convert.ToInt16(temp[6]);
+                    if (!string.IsNullOrWhiteSpace(temp[7]))
+                        currentSize = Convert.ToInt16(temp[7]);
+                    
+                    //PUT AT TOP
+                    if (maxSize <= currentSize)
                     {
-                        EnrollmentDataGridView.Rows[index].Cells["EDPCodeColumn"].Value = result[0];
-                        EnrollmentDataGridView.Rows[index].Cells["SubjectCodeColumn"].Value = result[1];
-                        EnrollmentDataGridView.Rows[index].Cells["StartTimeColumn"].Value = DateTime.Parse(result[2]).ToString("hh:mm:tt");
-                        EnrollmentDataGridView.Rows[index].Cells["EndTimeColumn"].Value = DateTime.Parse(result[3]).ToString("hh:mm:tt");
-                        EnrollmentDataGridView.Rows[index].Cells["DaysColumn"].Value = result[4];
-                        EnrollmentDataGridView.Rows[index].Cells["RoomColumn"].Value = result[5];
+                        MessageBox.Show("Current subject is already at full capacity");
+                        return;
                     }
- 
-                    if (!string.IsNullOrWhiteSpace(TotalUnitsLabel.Text)) 
+                    classroomCurrentSizes.Add(currentSize++);
+
+                    string filteredCurrentStartDate = new string(EnrollmentDataGridView.Rows[index].Cells["StartTimeColumn"]
+                        .Value.ToString().Where(c => char.IsDigit(c)).ToArray());
+                    int parsedCurrentStartDate = int.Parse(filteredCurrentStartDate);
+                    for (int i = 0; i < EnrollmentDataGridView.Rows.Count - 1; i++)
+                    {
+                        string enteredStartDate = EnrollmentDataGridView.Rows[i].Cells["StartTimeColumn"].Value.ToString();
+                        string filteredStartDate = new string(enteredStartDate.Where(char.IsDigit).ToArray());
+                        int parsedStartDate = int.Parse(filteredStartDate);
+
+                        string enteredEndDate = EnrollmentDataGridView.Rows[i].Cells["EndTimeColumn"].Value.ToString();
+                        string filteredEndDate = new string(enteredEndDate.Where(char.IsDigit).ToArray());
+                        int parsedEndDate = int.Parse(filteredEndDate);
+
+                        if (parsedStartDate <= parsedCurrentStartDate && parsedEndDate >= parsedCurrentStartDate)
+                        {
+                            MessageBox.Show("New subject entry with the start time of " + EnrollmentDataGridView.Rows[index].Cells["StartTimeColumn"].Value.ToString()
+                                + " and end time of " + EnrollmentDataGridView.Rows[index].Cells["EndTimeColumn"].Value.ToString()
+                                + " conflicts with an existing entry with a start time of " + EnrollmentDataGridView.Rows[i].Cells["StartTimeColumn"].Value.ToString()
+                                + " and end time of " + EnrollmentDataGridView.Rows[i].Cells["EndTimeColumn"].Value.ToString());
+                            return;
+                        }
+                    }
+
+                    if (string.IsNullOrWhiteSpace(TotalUnitsLabel.Text)) 
                     {
                         TotalUnitsLabel.BackColor = Color.Silver;
                         TotalUnitsLabel.Text = "0";
@@ -144,18 +174,17 @@ namespace EnrollmentSystem
             databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
             string query = "Select * From STUDENTFILE";
             databaseHelper.FetchDataFromDB(query, "STFSTUDID", "STFSTUDFNAME", "STFSTUDMNAME", "STFSTUDLNAME", "STFSTUDCOURSE", "STFSTUDYEAR");
-            foreach (string[] row in databaseHelper.resultList)
+            
+            studID.Add(databaseHelper.resultList[0]);
+            if (string.IsNullOrEmpty(databaseHelper.resultList[2]))
             {
-                studID.Add(row[0]);
-                if (string.IsNullOrEmpty(row[1]))
-                {
-                    studName.Add(row[1] + " " + row[3]);
-                }
-                else
-                    studName.Add(row[1] + " " + row[2] + ". " + row[3]);
-                studCourse.Add(row[4]);
-                studYear.Add(row[5]);
+                studName.Add(databaseHelper.resultList[1] + " " + databaseHelper.resultList[3]);
             }
+            else
+                studName.Add(databaseHelper.resultList[1] + " " + databaseHelper.resultList[2] + ". " + databaseHelper.resultList[3]);
+            studCourse.Add(databaseHelper.resultList[4]);
+            studYear.Add(databaseHelper.resultList[5]);
+            
         }
 
         private void EnrollmentEntry_FormClosing(object sender, FormClosingEventArgs e)

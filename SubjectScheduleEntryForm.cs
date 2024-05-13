@@ -90,11 +90,8 @@ namespace EnrollmentSystem
             databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
             string query = "Select * From SUBJECTFILE";
             databaseHelper.FetchDataFromDB(query, "SFSUBJCODE", "SFSUBJDESC");
-            foreach (string[] row in databaseHelper.resultList)
-            {
-                subjCodes.Add(row[0]);
-                subjDescs.Add(row[1]);
-            }
+            subjCodes.Add(databaseHelper.resultList[0]);
+            subjDescs.Add(databaseHelper.resultList[1]);    
         }
 
         private void SubjectCodeTextBox_TextChanged(object sender, EventArgs e)

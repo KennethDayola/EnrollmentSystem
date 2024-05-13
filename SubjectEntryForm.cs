@@ -83,12 +83,9 @@ namespace EnrollmentSystem
                 if (databaseHelper.CheckAndFetchFromDB(RequisiteTextBox.Text, "SFSUBJCODE", query, "SFSUBJDESC", "SFSUBJUNITS"))
                 {
                     index = SubjectDataGridView.Rows.Add();
-                    foreach (string[] result in databaseHelper.resultList)
-                    {
-                        SubjectDataGridView.Rows[index].Cells["SubjectCodeColumn"].Value = result[0];
-                        SubjectDataGridView.Rows[index].Cells["DescriptionColumn"].Value = result[1];
-                        SubjectDataGridView.Rows[index].Cells["UnitsColumn"].Value = result[2];
-                    }
+                    SubjectDataGridView.Rows[index].Cells["SubjectCodeColumn"].Value = databaseHelper.resultList[0];
+                    SubjectDataGridView.Rows[index].Cells["DescriptionColumn"].Value = databaseHelper.resultList[1];
+                    SubjectDataGridView.Rows[index].Cells["UnitsColumn"].Value = databaseHelper.resultList[2];
                 }
                 else
                     MessageBox.Show("Subject Code Not Found");
