@@ -54,7 +54,7 @@ namespace EnrollmentSystem
             thisRow["SFSUBJDESC"] = DescriptionTextBox.Text;
             thisRow["SFSUBJUNITS"] = UnitsTextBox.Text;
             thisRow["SFSUBJREGOFRNG"] = Convert.ToSingle(OfferingComboBox.Text.Substring(0, 1));
-            thisRow["SFSUBJCATEGORY"] = CategoryComboBox.Text.Substring(0, 1);
+            thisRow["SFSUBJCATEGORY"] = CategoryComboBox.Text.Substring(0, 3);
             thisRow["SFSUBJSTATUS"] = "AC";
             thisRow["SFSUBJCOURSECODE"] = CourseCodeComboBox.Text;
             thisRow["SFSUBJCURRCODE"] = CurriculumYearTextBox.Text;
