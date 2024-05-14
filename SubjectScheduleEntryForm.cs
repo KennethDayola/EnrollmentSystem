@@ -48,6 +48,17 @@ namespace EnrollmentSystem
                 MessageBox.Show("The input in the school year textbox must be an integer");
                 return;
             }
+            if (DaysTextBox.Text.Length > 3 || SectionTextBox.Text.Length > 3 || RoomTextBox.Text.Length > 3)
+            {
+                MessageBox.Show("Either the days textbox, section textbox, or the room textbox is over the limit of 3 characters");
+                return;
+            }
+            if ((Convert.ToInt32(TimeStartTimePicker.Value.TimeOfDay.TotalHours) >= 12 && XMComboBox.Text != "PM")
+                || (Convert.ToInt32(TimeStartTimePicker.Value.TimeOfDay.TotalHours) < 12 && XMComboBox.Text != "AM"))
+            {
+                MessageBox.Show("AM/PM field should match the AM/PM of start time");
+                return;
+            }
 
             DatabaseHelper databaseHelper = new DatabaseHelper();
             string query = "Select * From SUBJECTSCHEDFILE";
@@ -90,8 +101,15 @@ namespace EnrollmentSystem
             databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
             string query = "Select * From SUBJECTFILE";
             databaseHelper.FetchDataFromDB(query, "SFSUBJCODE", "SFSUBJDESC");
-            subjCodes.Add(databaseHelper.resultList[0]);
-            subjDescs.Add(databaseHelper.resultList[1]);    
+            foreach (var resultArray in databaseHelper.resultListArray)
+            {
+                // Make sure the array has at least 2 elements to avoid IndexOutOfRangeException
+                if (resultArray.Length >= 2)
+                {
+                    subjCodes.Add(resultArray[0]);
+                    subjDescs.Add(resultArray[1]);
+                }
+            }
         }
 
         private void SubjectCodeTextBox_TextChanged(object sender, EventArgs e)

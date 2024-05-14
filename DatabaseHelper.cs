@@ -14,6 +14,7 @@ namespace EnrollmentSystem
         public OleDbCommand dbCommand;
         public OleDbDataReader dbDataReader;
         public List<string> resultList = new List<string>();
+        public List<string[]> resultListArray = new List<string[]>();
 
         /// <summary>
         /// initializes connection to database
@@ -57,7 +58,7 @@ namespace EnrollmentSystem
         /// </summary>
         /// <param name="query"></param>
         /// <param name="columns"></param>
-        public void FetchDataFromDB(string query, params string[] columns)
+        public void FetchRowDataFromDB(string query, params string[] columns)
         {
             dbConnection.Open();
             dbCommand = dbConnection.CreateCommand();
@@ -71,6 +72,29 @@ namespace EnrollmentSystem
                     rowData.Add(dbDataReader[column].ToString());
                 }
                 resultList = rowData;
+            }
+            dbConnection.Close();
+        }
+
+        /// <summary>
+        /// fetches data from the database based on the columns provided
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="columns"></param>
+        public void FetchDataFromDB(string query, params string[] columns)
+        {
+            dbConnection.Open();
+            dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = query;
+            dbDataReader = dbCommand.ExecuteReader();
+            while (dbDataReader.Read())
+            {
+                List<string> rowData = new List<string>();
+                foreach (string column in columns)
+                {
+                    rowData.Add(dbDataReader[column].ToString());
+                }
+                resultListArray.Add(rowData.ToArray());
             }
             dbConnection.Close();
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,15 +17,19 @@ namespace EnrollmentSystem
 {
     //TODO: Add menu
     //TODO: Handle prequisite and co requisite in subject entry form by adding textboxes needed and also dgv there
-    //TODO: Fix error trapping
+    //TODO: Handle two subject code same in the subject schedule entry form
     //TODO: When student has not taken a pre requisite subject do not allow them to take the subject when enrolled
     //TODO: Add curriculum code in requisite info for duplicate subjects
     //TODO: Add all entries to database in this form
+    //TODO: Maybe add max size of characters error trapping to all forms check the table
+    //TODO: Add validation of primary keys in enrollment file and header
+    //TODO: Is WI really the status cry
     public partial class EnrollmentEntryForm : Form
     {
         bool closedDirectly = true;
         bool idFound = false;
 
+        string[] dayConstants = new string[] {"S", "F", "TH", "W", "T", "M" };
         List<int> classroomCurrentSizes = new List<int>();
 
         // student information
@@ -123,7 +128,7 @@ namespace EnrollmentSystem
             databaseHelperHF.ConnectToDatabase("Select * From ENROLLMENTHEADERFILE");
 
             DataSet thisDatasetHF = new DataSet();
-            databaseHelperDF.dbDataAdapter.Fill(thisDatasetHF, "EnrollmentHeaderFile");
+            databaseHelperHF.dbDataAdapter.Fill(thisDatasetHF, "EnrollmentHeaderFile");
 
             DataRow thisRowHF = thisDatasetHF.Tables["EnrollmentHeaderFile"].NewRow();
             thisRowHF["ENRHFSTUDID"] = IDNumberTextBox.Text;
@@ -134,7 +139,7 @@ namespace EnrollmentSystem
             thisRowHF["ENRHFSTUDSTATUS"] = "EN"; 
 
             thisDatasetHF.Tables["EnrollmentHeaderFile"].Rows.Add(thisRowHF);
-            databaseHelperDF.dbDataAdapter.Update(thisDatasetHF, "EnrollmentHeaderFile");
+            databaseHelperHF.dbDataAdapter.Update(thisDatasetHF, "EnrollmentHeaderFile");
 
             //Updating class size
             DatabaseHelper databaseHelperSSF = new DatabaseHelper();
@@ -142,24 +147,92 @@ namespace EnrollmentSystem
 
             DataSet thisDatasetSSF = new DataSet();
             databaseHelperSSF.dbDataAdapter.Fill(thisDatasetSSF, "SubjectSchedFile");
-            
+
             //wtf tabang tug sa ko
-            //for (int i = 0; i < EnrollmentDataGridView.RowCount - 1; i++)
-            //{
-            //    foreach (DataRow row in thisDatasetSSF.Tables["SubjectSchedFile"].Rows)
-            //    {
-            //        if (row["SSFEDPCODE"].ToString().Trim() == EnrollmentDataGridView.Rows[i].Cells["EDPCodeColumn"].Value.ToString().Trim())
-            //        {
-            //            OleDbCommand updateCommand = databaseHelperSSF.dbConnection.CreateCommand();
-            //            updateCommand.CommandText = "UPDATE SubjectSchedFile SET SSFCLASSSIZE = @ClassSize WHERE SSFEDPCODE = @EDPCode";
-            //            updateCommand.Parameters.AddWithValue("@ClassSize", "YourValue"); 
-            //            updateCommand.Parameters.AddWithValue("@EDPCode", row["SSFEDPCODE"].ToString().Trim());
-            //            updateCommand.ExecuteNonQuery();
-            //            updateCommand.Dispose();
-            //            break;
-            //        }
-            //    }
-            //}
+            for (int i = 0; i < EnrollmentDataGridView.RowCount - 1; i++)
+            {
+                foreach (DataRow row in thisDatasetSSF.Tables["SubjectSchedFile"].Rows)
+                {
+                    if (row["SSFEDPCODE"].ToString().Trim() == EnrollmentDataGridView.Rows[i].Cells["EDPCodeColumn"].Value.ToString().Trim())
+                    {
+                        OleDbCommand updateCommand = databaseHelperSSF.dbConnection.CreateCommand();
+                        updateCommand.CommandText = "UPDATE SubjectSchedFile SET SSFCLASSSIZE = @ClassSize WHERE SSFEDPCODE = @EDPCode";
+                        updateCommand.Parameters.AddWithValue("@ClassSize", classroomCurrentSizes[i]);
+                        updateCommand.Parameters.AddWithValue("@EDPCode", row["SSFEDPCODE"].ToString().Trim());
+                        updateCommand.ExecuteNonQuery();
+                        updateCommand.Dispose();
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// responsible for catching conflicts in the schedule
+        /// </summary>
+        /// <param name="source"></param>
+        private bool IsScheduleValid(List <string> source)
+        {
+            string enteredCurrentStartTime = Convert12HourTo24HourFormat(DateTime.Parse(source[2]).ToString("hh:mm:tt"));
+            string filteredCurrentStartTime = new string(enteredCurrentStartTime.Where(char.IsDigit).ToArray());
+            int parsedCurrentStartTime = int.Parse(filteredCurrentStartTime);
+
+            string enteredCurrentEndTime = Convert12HourTo24HourFormat(DateTime.Parse(source[3]).ToString("hh:mm:tt"));
+            string filteredCurrentEndTime = new string(enteredCurrentEndTime.Where(char.IsDigit).ToArray());
+            int parsedCurrentEndTime = int.Parse(filteredCurrentEndTime);
+
+            for (int i = 0; i < EnrollmentDataGridView.Rows.Count - 1; i++)
+            {
+                string enteredStartTime = Convert12HourTo24HourFormat(EnrollmentDataGridView.Rows[i].Cells["StartTimeColumn"].Value.ToString());
+                string filteredStartTime = new string(enteredStartTime.Where(char.IsDigit).ToArray());
+                int parsedStartTime = int.Parse(filteredStartTime);
+
+                string enteredEndTime = Convert12HourTo24HourFormat(EnrollmentDataGridView.Rows[i].Cells["EndTimeColumn"].Value.ToString());
+                string filteredEndTime = new string(enteredEndTime.Where(char.IsDigit).ToArray());
+                int parsedEndTime = int.Parse(filteredEndTime);
+
+                if ((parsedStartTime <= parsedCurrentStartTime && parsedEndTime >= parsedCurrentStartTime)
+                    || (parsedStartTime <= parsedCurrentEndTime && parsedEndTime >= parsedCurrentEndTime))
+                {
+                    string currentDays = source[4].Trim().ToUpper();
+                    for (int j = 0; j < dayConstants.Length; j++)
+                    {
+                        if (currentDays.Contains(dayConstants[j]))
+                        {
+                            currentDays = currentDays.Replace(dayConstants[j], "");
+                            if (EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString().Contains(dayConstants[j]))
+                            {
+                                MessageBox.Show("New subject entry with the days of \"" + source[4] + "\" and start time of \"" + DateTime.Parse(source[2]).ToString("hh:mm:tt")
+                                   + "\" and end time of \"" + DateTime.Parse(source[3]).ToString("hh:mm:tt")
+                                   + "\" conflicts with an existing entry with the days of \"" + EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString()
+                                   + "\" a start time of \"" + EnrollmentDataGridView.Rows[i].Cells["StartTimeColumn"].Value.ToString()
+                                   + "\" and end time of \"" + EnrollmentDataGridView.Rows[i].Cells["EndTimeColumn"].Value.ToString() + "\"");
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        private string Convert12HourTo24HourFormat(string time12HourFormat)
+        {
+            string[] parts = time12HourFormat.Split(':');
+            int hours = int.Parse(parts[0]);
+            int minutes = int.Parse(parts[1]);
+            string amPm = parts[2];
+
+            if (string.Equals(amPm, "PM", StringComparison.OrdinalIgnoreCase) && hours < 12)
+            {
+                hours += 12;
+            }
+            else if (string.Equals(amPm, "AM", StringComparison.OrdinalIgnoreCase) && hours == 12)
+            {
+                hours = 0;
+            }
+
+            return string.Format("{0:D2}:{1:D2}", hours, minutes);
         }
 
         private void EDPTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -195,31 +268,8 @@ namespace EnrollmentSystem
                     }
                     classroomCurrentSizes.Add(currentSize++);
 
-                    //Checks if there is a conflict in schedules
-                    string filteredCurrentStartTime = new string(DateTime.Parse(temp[2]).ToString("hh:mm:tt").Where(c => char.IsDigit(c)).ToArray());
-                    int parsedCurrentStartTime = int.Parse(filteredCurrentStartTime);
-                    string filteredCurrentEndTime = new string(DateTime.Parse(temp[3]).ToString("hh:mm:tt").Where(c => char.IsDigit(c)).ToArray());
-                    int parsedCurrentEndTime = int.Parse(filteredCurrentEndTime);
-                    for (int i = 0; i < EnrollmentDataGridView.Rows.Count - 1; i++)
-                    {
-                        string enteredStartTime = EnrollmentDataGridView.Rows[i].Cells["StartTimeColumn"].Value.ToString();
-                        string filteredStartTime = new string(enteredStartTime.Where(char.IsDigit).ToArray());
-                        int parsedStartTime = int.Parse(filteredStartTime);
-
-                        string enteredEndTime = EnrollmentDataGridView.Rows[i].Cells["EndTimeColumn"].Value.ToString();
-                        string filteredEndTime = new string(enteredEndTime.Where(char.IsDigit).ToArray());
-                        int parsedEndTime = int.Parse(filteredEndTime);
-
-                        if ((parsedStartTime <= parsedCurrentStartTime && parsedEndTime >= parsedCurrentStartTime)
-                            || (parsedStartTime <= parsedCurrentEndTime && parsedEndTime >= parsedCurrentEndTime))
-                        {
-                            MessageBox.Show("New subject entry with the start time of \"" + DateTime.Parse(temp[2]).ToString("hh:mm:tt")
-                                + "\" and end time of \"" + DateTime.Parse(temp[3]).ToString("hh:mm:tt")
-                                + "\" conflicts with an existing entry with a start time of \"" + EnrollmentDataGridView.Rows[i].Cells["StartTimeColumn"].Value.ToString()
-                                + "\" and end time of \"" + EnrollmentDataGridView.Rows[i].Cells["EndTimeColumn"].Value.ToString() + "\"");
-                            return;
-                        }
-                    }
+                    if (!IsScheduleValid(temp))
+                        return;
 
                     //Now the usual getting the data from the database and assigning values to the dgv
                     int units = 0;
@@ -261,7 +311,7 @@ namespace EnrollmentSystem
             DatabaseHelper databaseHelper = new DatabaseHelper();
             databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
             string query = "Select * From STUDENTFILE";
-            databaseHelper.FetchDataFromDB(query, "STFSTUDID", "STFSTUDFNAME", "STFSTUDMNAME", "STFSTUDLNAME", "STFSTUDCOURSE", "STFSTUDYEAR");
+            databaseHelper.FetchRowDataFromDB(query, "STFSTUDID", "STFSTUDFNAME", "STFSTUDMNAME", "STFSTUDLNAME", "STFSTUDCOURSE", "STFSTUDYEAR");
             
             studID.Add(databaseHelper.resultList[0]);
             if (string.IsNullOrEmpty(databaseHelper.resultList[2]))
