@@ -194,7 +194,7 @@ namespace EnrollmentSystem
             string enteredCurrentEndTime = Convert12HourTo24HourFormat(DateTime.Parse(source[3]).ToString("hh:mm:tt"));
             string filteredCurrentEndTime = new string(enteredCurrentEndTime.Where(char.IsDigit).ToArray());
             int parsedCurrentEndTime = int.Parse(filteredCurrentEndTime);
-
+           
             for (int i = 0; i < EnrollmentDataGridView.Rows.Count - 1; i++)
             {
                 string enteredStartTime = Convert12HourTo24HourFormat(EnrollmentDataGridView.Rows[i].Cells["StartTimeColumn"].Value.ToString());
@@ -205,6 +205,12 @@ namespace EnrollmentSystem
                 string filteredEndTime = new string(enteredEndTime.Where(char.IsDigit).ToArray());
                 int parsedEndTime = int.Parse(filteredEndTime);
 
+                string errorMessage = "New subject entry with the days of \"" + source[4] + "\" and start time of \"" + DateTime.Parse(source[2]).ToString("hh:mm:tt")
+                                  + "\" and end time of \"" + DateTime.Parse(source[3]).ToString("hh:mm:tt")
+                                  + "\" conflicts with an existing entry with the days of \"" + EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString()
+                                  + "\" a start time of \"" + EnrollmentDataGridView.Rows[i].Cells["StartTimeColumn"].Value.ToString()
+                                  + "\" and end time of \"" + EnrollmentDataGridView.Rows[i].Cells["EndTimeColumn"].Value.ToString() + "\"";
+
                 if ((parsedStartTime <= parsedCurrentStartTime && parsedEndTime >= parsedCurrentStartTime)
                     || (parsedStartTime <= parsedCurrentEndTime && parsedEndTime >= parsedCurrentEndTime))
                 {
@@ -214,13 +220,18 @@ namespace EnrollmentSystem
                         if (currentDays.Contains(dayConstants[j]))
                         {
                             currentDays = currentDays.Replace(dayConstants[j], "");
-                            if (EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString().Contains(dayConstants[j]))
+                            if (j == 4)
                             {
-                                MessageBox.Show("New subject entry with the days of \"" + source[4] + "\" and start time of \"" + DateTime.Parse(source[2]).ToString("hh:mm:tt")
-                                   + "\" and end time of \"" + DateTime.Parse(source[3]).ToString("hh:mm:tt")
-                                   + "\" conflicts with an existing entry with the days of \"" + EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString()
-                                   + "\" a start time of \"" + EnrollmentDataGridView.Rows[i].Cells["StartTimeColumn"].Value.ToString()
-                                   + "\" and end time of \"" + EnrollmentDataGridView.Rows[i].Cells["EndTimeColumn"].Value.ToString() + "\"");
+                                if (EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString().Contains(dayConstants[j])
+                                    && !EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString().Contains(dayConstants[2]))
+                                {
+                                    MessageBox.Show(errorMessage);
+                                    return false;
+                                }
+                            }
+                            else if (EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString().Contains(dayConstants[j]))
+                            {
+                                MessageBox.Show(errorMessage);
                                 return false;
                             }
                         }
