@@ -20,9 +20,6 @@ namespace EnrollmentSystem
     //TODO: Handle two subject code same in the subject schedule entry form
     //TODO: When student has not taken a pre requisite subject do not allow them to take the subject when enrolled
     //TODO: Add curriculum code in requisite info for duplicate subjects
-    //TODO: Add all entries to database in this form
-    //TODO: Maybe add max size of characters error trapping to all forms check the table
-    //TODO: Add validation of primary keys in enrollment file and header
     //TODO: Is WI really the status cry
     public partial class EnrollmentEntryForm : Form
     {
@@ -103,10 +100,21 @@ namespace EnrollmentSystem
                 MessageBox.Show("The \"Encoded by:\" field is empty");
                 return;
             }
-
-            //Recording enrollment detail file
+            
+            //Recording of enrollment detail file
             DatabaseHelper databaseHelperDF = new DatabaseHelper();
             databaseHelperDF.ConnectToDatabase("Select * From ENROLLMENTDETAILFILE");
+
+            for (int i = 0; i < EnrollmentDataGridView.RowCount - 1; i++)
+            {
+                if (databaseHelperDF.CheckIfDataInDB(EnrollmentDataGridView.Rows[i].Cells["EDPCodeColumn"].ToString(),
+                    "ENRDFSTUDEDPCODE", "Select * From ENROLLMENTDETAILFILE") && databaseHelperDF.CheckIfDataInDB(IDNumberTextBox.Text,
+                    "ENRDFSTUDID", "Select * From ENROLLMENTDETAILFILE"))
+                {
+                    MessageBox.Show("Current student ID has already enrolled in the EDP code " + EnrollmentDataGridView.Rows[i].Cells["EDPCodeColumn"].ToString());
+                    return;
+                }
+            }
 
             for (int i = 0; i < EnrollmentDataGridView.RowCount - 1; i++)
             {
@@ -123,23 +131,26 @@ namespace EnrollmentSystem
                 databaseHelperDF.dbDataAdapter.Update(thisDatasetDF, "EnrollmentDetailFile");
             }
 
-            //Recording enrollment header file
+            //Recording of enrollment header file
             DatabaseHelper databaseHelperHF = new DatabaseHelper();
             databaseHelperHF.ConnectToDatabase("Select * From ENROLLMENTHEADERFILE");
 
-            DataSet thisDatasetHF = new DataSet();
-            databaseHelperHF.dbDataAdapter.Fill(thisDatasetHF, "EnrollmentHeaderFile");
+            if (!databaseHelperHF.CheckIfDataInDB(IDNumberTextBox.Text, "ENRHFSTUDID", "Select * From ENROLLMENTHEADERFILE"))
+            {
+                DataSet thisDatasetHF = new DataSet();
+                databaseHelperHF.dbDataAdapter.Fill(thisDatasetHF, "EnrollmentHeaderFile");
 
-            DataRow thisRowHF = thisDatasetHF.Tables["EnrollmentHeaderFile"].NewRow();
-            thisRowHF["ENRHFSTUDID"] = IDNumberTextBox.Text;
-            thisRowHF["ENRHFSTUDDATEENROLL"] = EnrollmentDateTimePicker.Value;
-            thisRowHF["ENRHFSTUDSCHLYR"] = YearLabel.Text; 
-            thisRowHF["ENRHFSTUDENCODER"] = EncodedTextBox.Text; 
-            thisRowHF["ENRHFSTUDTOTALUNITS"] = TotalUnitsLabel.Text; 
-            thisRowHF["ENRHFSTUDSTATUS"] = "EN"; 
+                DataRow thisRowHF = thisDatasetHF.Tables["EnrollmentHeaderFile"].NewRow();
+                thisRowHF["ENRHFSTUDID"] = IDNumberTextBox.Text;
+                thisRowHF["ENRHFSTUDDATEENROLL"] = EnrollmentDateTimePicker.Value;
+                thisRowHF["ENRHFSTUDSCHLYR"] = YearLabel.Text;
+                thisRowHF["ENRHFSTUDENCODER"] = EncodedTextBox.Text;
+                thisRowHF["ENRHFSTUDTOTALUNITS"] = TotalUnitsLabel.Text;
+                thisRowHF["ENRHFSTUDSTATUS"] = "EN";
 
-            thisDatasetHF.Tables["EnrollmentHeaderFile"].Rows.Add(thisRowHF);
-            databaseHelperHF.dbDataAdapter.Update(thisDatasetHF, "EnrollmentHeaderFile");
+                thisDatasetHF.Tables["EnrollmentHeaderFile"].Rows.Add(thisRowHF);
+                databaseHelperHF.dbDataAdapter.Update(thisDatasetHF, "EnrollmentHeaderFile");
+            }
 
             //Updating class size
             DatabaseHelper databaseHelperSSF = new DatabaseHelper();
@@ -148,7 +159,7 @@ namespace EnrollmentSystem
             DataSet thisDatasetSSF = new DataSet();
             databaseHelperSSF.dbDataAdapter.Fill(thisDatasetSSF, "SubjectSchedFile");
 
-            //wtf tabang tug sa ko
+            databaseHelperSSF.dbConnection.Open();
             for (int i = 0; i < EnrollmentDataGridView.RowCount - 1; i++)
             {
                 foreach (DataRow row in thisDatasetSSF.Tables["SubjectSchedFile"].Rows)
@@ -165,6 +176,9 @@ namespace EnrollmentSystem
                     }
                 }
             }
+            databaseHelperSSF.dbConnection.Close();
+
+            MessageBox.Show("Recorded");
         }
 
         /// <summary>
@@ -216,6 +230,11 @@ namespace EnrollmentSystem
             return true;
         }
 
+        /// <summary>
+        /// converts 12 hour time formats to 24 houor
+        /// </summary>
+        /// <param name="time12HourFormat"></param>
+        /// <returns></returns>
         private string Convert12HourTo24HourFormat(string time12HourFormat)
         {
             string[] parts = time12HourFormat.Split(':');
@@ -266,7 +285,8 @@ namespace EnrollmentSystem
                         MessageBox.Show("Current subject is already at full capacity");
                         return;
                     }
-                    classroomCurrentSizes.Add(currentSize++);
+                    currentSize += 1;
+                    classroomCurrentSizes.Add(currentSize);
 
                     if (!IsScheduleValid(temp))
                         return;
