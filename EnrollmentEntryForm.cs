@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.Odbc;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,8 @@ using System.Windows.Forms;
 
 namespace EnrollmentSystem
 {
-    //TODO: Add menu YIP DONE
-    //TODO: Handle prequisite and co requisite in subject entry form (?) - Logic already good i think DONE
-    //TODO: Handle two subject code same in the subject schedule entry form (?) - Don't need no one will know
-    //TODO: When student has not taken the pre/co requisite subject do not allow them to take the subject when enrolled YIP
-    //TODO: Subject requisite DONE i think
-    //TODO: Add curriculum code in requisite info for duplicate subjects and also add requisite actually YIS DONE
-    //TODO: Add requisite column, add a definition under the textbox of the requisite textbox YIP DONE
     //TODO: Is WI really the status cry
+    //TODO: Changing from new to old student
     public partial class EnrollmentEntryForm : Form
     {
         bool closedDirectly = true;
@@ -381,18 +376,20 @@ namespace EnrollmentSystem
             DatabaseHelper databaseHelper = new DatabaseHelper();
             databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
             string query = "Select * From STUDENTFILE";
-            databaseHelper.FetchRowDataFromDB(query, "STFSTUDID", "STFSTUDFNAME", "STFSTUDMNAME", "STFSTUDLNAME", "STFSTUDCOURSE", "STFSTUDYEAR");
-            
-            studID.Add(databaseHelper.resultList[0]);
-            if (string.IsNullOrEmpty(databaseHelper.resultList[2]))
+            databaseHelper.FetchDataFromDB(query, "STFSTUDID", "STFSTUDFNAME", "STFSTUDMNAME", "STFSTUDLNAME", "STFSTUDCOURSE", "STFSTUDYEAR");
+            foreach (var resultArray in databaseHelper.resultListArray)
             {
-                studName.Add(databaseHelper.resultList[1] + " " + databaseHelper.resultList[3]);
+                if (resultArray != null)
+                {
+                    studID.Add(resultArray[0]);
+                    if (string.IsNullOrEmpty(resultArray[2]))
+                        studName.Add(resultArray[1] + " " + resultArray[3]);
+                    else
+                        studName.Add(resultArray[1] + " " + resultArray[2] + ". " + resultArray[3]);
+                    studCourse.Add(resultArray[4]);
+                    studYear.Add(resultArray[5]);
+                }
             }
-            else
-                studName.Add(databaseHelper.resultList[1] + " " + databaseHelper.resultList[2] + ". " + databaseHelper.resultList[3]);
-            studCourse.Add(databaseHelper.resultList[4]);
-            studYear.Add(databaseHelper.resultList[5]);
-            
         }
 
         private void EnrollmentEntry_FormClosing(object sender, FormClosingEventArgs e)

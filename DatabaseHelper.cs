@@ -53,26 +53,6 @@ namespace EnrollmentSystem
             return found;
         }
 
-        public bool CheckIfDataInDBTwoKeys(string value1, string value2, string columnName1, string columnName2, string query)
-        {
-            bool found = false;
-            dbConnection.Open();
-            dbCommand = dbConnection.CreateCommand();
-            dbCommand.CommandText = query;
-            dbDataReader = dbCommand.ExecuteReader();
-            while (dbDataReader.Read())
-            {
-                if (dbDataReader[columnName1].ToString().Trim().ToUpper() == value1.Trim().ToUpper() &&
-                    dbDataReader[columnName2].ToString().Trim().ToUpper() == value2.Trim().ToUpper())
-                {
-                    found = true;
-                    break;
-                }
-            }
-            dbConnection.Close();
-            return found;
-        }
-
         /// <summary>
         /// fetches a row from the database based on the query and columns provided
         /// </summary>
@@ -146,6 +126,35 @@ namespace EnrollmentSystem
                         rowData.Add(dbDataReader[column].ToString());
                     }
                     resultList = rowData;
+                }
+            }
+            dbConnection.Close();
+            return found;
+        }
+
+        /// <summary>
+        /// checks if two data are found in the database, mainly if there are two primary keys
+        /// </summary>
+        /// <param name="value1"></param>
+        /// <param name="value2"></param>
+        /// <param name="columnName1"></param>
+        /// <param name="columnName2"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public bool CheckIfDataInDBTwoKeys(string value1, string value2, string columnName1, string columnName2, string query)
+        {
+            bool found = false;
+            dbConnection.Open();
+            dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = query;
+            dbDataReader = dbCommand.ExecuteReader();
+            while (dbDataReader.Read())
+            {
+                if (dbDataReader[columnName1].ToString().Trim().ToUpper() == value1.Trim().ToUpper() &&
+                    dbDataReader[columnName2].ToString().Trim().ToUpper() == value2.Trim().ToUpper())
+                {
+                    found = true;
+                    break;
                 }
             }
             dbConnection.Close();

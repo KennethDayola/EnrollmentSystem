@@ -38,6 +38,7 @@
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubjectEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubjectScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enrollmentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.IDNumTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -175,9 +175,9 @@
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem});
             this.menuStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip2.Location = new System.Drawing.Point(10, 76);
+            this.menuStrip2.Location = new System.Drawing.Point(72, 100);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(156, 62);
+            this.menuStrip2.Size = new System.Drawing.Size(94, 38);
             this.menuStrip2.TabIndex = 27;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -191,11 +191,19 @@
             this.FileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.5F);
             this.FileToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
-            this.FileToolStripMenuItem.Size = new System.Drawing.Size(149, 32);
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(87, 32);
             this.FileToolStripMenuItem.Text = "📁 File";
             this.FileToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.FileToolStripMenuItem.DropDownClosed += new System.EventHandler(this.FileToolStripMenuItem_DropDownClosed);
             this.FileToolStripMenuItem.DropDownOpened += new System.EventHandler(this.FileToolStripMenuItem_DropDownOpened);
+            // 
+            // homeToolStripMenuItem
+            // 
+            this.homeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
+            this.homeToolStripMenuItem.Text = "🏠 Home";
+            this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
             // 
             // SubjectEntryToolStripMenuItem
             // 
@@ -357,7 +365,7 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label17.Location = new System.Drawing.Point(275, 366);
+            this.label17.Location = new System.Drawing.Point(280, 371);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 20);
             this.label17.TabIndex = 12;
@@ -500,14 +508,6 @@
             this.label9.Size = new System.Drawing.Size(82, 20);
             this.label9.TabIndex = 0;
             this.label9.Text = "ID Number";
-            // 
-            // homeToolStripMenuItem
-            // 
-            this.homeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
-            this.homeToolStripMenuItem.Text = "🏠 Home";
-            this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
             // 
             // StudentEntryForm
             // 

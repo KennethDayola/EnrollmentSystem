@@ -250,7 +250,7 @@ namespace EnrollmentSystem
 
         private void RequisitePromptPicBox_MouseHover(object sender, EventArgs e)
         {
-            RequisiteTextBoxToolTip.Show("Press Enter to display subject information" +
+            RequisiteTextBoxToolTip.Show("Fill this textbox and press \"Enter\" to display subject information" +
                 ", otherwise fill up this field and \nclick a radio button to input the requisite subject for the subject code above", RequisitePromptPicBox);
         }
     }
