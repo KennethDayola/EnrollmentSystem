@@ -16,11 +16,11 @@ using System.Windows.Forms;
 namespace EnrollmentSystem
 {
     //TODO: Add menu YIP DONE
-    //TODO: Handle prequisite and co requisite in subject entry form (?) - Logic already good i think
+    //TODO: Handle prequisite and co requisite in subject entry form (?) - Logic already good i think DONE
     //TODO: Handle two subject code same in the subject schedule entry form (?) - Don't need no one will know
     //TODO: When student has not taken the pre/co requisite subject do not allow them to take the subject when enrolled YIP
-    //TODO: Subject requisite
-    //TODO: Add curriculum code in requisite info for duplicate subjects and also add requisite actually YIS
+    //TODO: Subject requisite DONE i think
+    //TODO: Add curriculum code in requisite info for duplicate subjects and also add requisite actually YIS DONE
     //TODO: Add requisite column, add a definition under the textbox of the requisite textbox YIP DONE
     //TODO: Is WI really the status cry
     public partial class EnrollmentEntryForm : Form
@@ -31,7 +31,6 @@ namespace EnrollmentSystem
         string[] dayConstants = new string[] {"S", "F", "TH", "W", "T", "M" };
         List<int> classroomCurrentSizes = new List<int>();
 
-        // student information
         List<string> studID = new List<string>();
         List<string> studName = new List<string>();
         List<string> studCourse = new List<string>();
@@ -97,9 +96,9 @@ namespace EnrollmentSystem
                 MessageBox.Show("No data found in the data grid. Please add some data before proceeding");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(EncodedTextBox.Text))
+            if (ValidateClrMethods.AreTextBoxesEmpty(EncodedTextBox, SchoolYearTextBox))
             {
-                MessageBox.Show("The \"Encoded by:\" field is empty");
+                MessageBox.Show("Please fill up fields \"Encoded by\" and \"School Year\"");
                 return;
             }
             
@@ -109,12 +108,44 @@ namespace EnrollmentSystem
 
             for (int i = 0; i < EnrollmentDataGridView.RowCount - 1; i++)
             {
-                if (databaseHelperDF.CheckIfDataInDB(EnrollmentDataGridView.Rows[i].Cells["EDPCodeColumn"].ToString(),
-                    "ENRDFSTUDEDPCODE", "Select * From ENROLLMENTDETAILFILE") && databaseHelperDF.CheckIfDataInDB(IDNumberTextBox.Text,
-                    "ENRDFSTUDID", "Select * From ENROLLMENTDETAILFILE"))
+                //if (databaseHelperDF.CheckIfDataInDB(EnrollmentDataGridView.Rows[i].Cells["EDPCodeColumn"].ToString(),
+                //    "ENRDFSTUDEDPCODE", "Select * From ENROLLMENTDETAILFILE") && databaseHelperDF.CheckIfDataInDB(IDNumberTextBox.Text,
+                //    "ENRDFSTUDID", "Select * From ENROLLMENTDETAILFILE"))
+                if (databaseHelperDF.CheckIfDataInDBTwoKeys(EnrollmentDataGridView.Rows[i].Cells["EDPCodeColumn"].Value.ToString(), IDNumberTextBox.Text,
+                    "ENRDFSTUDEDPCODE", "ENRDFSTUDID", "Select * From ENROLLMENTDETAILFILE"))
                 {
-                    MessageBox.Show("Current student ID has already enrolled in the EDP code " + EnrollmentDataGridView.Rows[i].Cells["EDPCodeColumn"].ToString());
+                    MessageBox.Show("Current student ID has already enrolled in the EDP code " + EnrollmentDataGridView.Rows[i].Cells["EDPCodeColumn"].Value.ToString());
                     return;
+                }
+
+                if (databaseHelperDF.CheckAndFetchFromDB(EnrollmentDataGridView.Rows[i].Cells["SubjectCodeColumn"].Value.ToString(), "SUBJCODE"
+                    , "Select * From SUBJECTPREQFILE", "SUBJCATEGORY", "SUBJPRECODE"))
+                {
+                    if (databaseHelperDF.resultList[1] == "PR")
+                    {
+                        if (!(databaseHelperDF.CheckIfDataInDB(databaseHelperDF.resultList[2], "ENRDFSTUDSUBJCODE", "Select * From ENROLLMENTDETAILFILE") 
+                            && databaseHelperDF.CheckIfDataInDB(IDNumberTextBox.Text, "ENRDFSTUDID", "Select * From ENROLLMENTDETAILFILE")))
+                        {
+                            MessageBox.Show("Subject code\"" + EnrollmentDataGridView.Rows[i].Cells["SubjectCodeColumn"].Value.ToString() + "\"  needs the pre-requisite subject \""
+                                + databaseHelperDF.resultList[2] + "\" which cannot be found in the current student ID's database");
+                            return;
+                        }
+                    }
+                    else if (databaseHelperDF.resultList[1] == "CR")
+                    {
+                        bool found = false;
+                        for (int j = 0; j < EnrollmentDataGridView.RowCount - 1; i++)
+                        {
+                            if (databaseHelperDF.resultList[2] == EnrollmentDataGridView.Rows[j].Cells["SubjectCodeColumn"].Value.ToString())
+                                found = true;
+                        }
+                        if (!found)
+                        {
+                            MessageBox.Show("Subject code \"" + EnrollmentDataGridView.Rows[i].Cells["SubjectCodeColumn"].Value.ToString() + "\" needs the co-requisite subject \""
+                                + databaseHelperDF.resultList[2] + "\" which cannot be found in the current list");
+                            return;
+                        }
+                    }
                 }
             }
 
@@ -145,7 +176,7 @@ namespace EnrollmentSystem
                 DataRow thisRowHF = thisDatasetHF.Tables["EnrollmentHeaderFile"].NewRow();
                 thisRowHF["ENRHFSTUDID"] = IDNumberTextBox.Text;
                 thisRowHF["ENRHFSTUDDATEENROLL"] = EnrollmentDateTimePicker.Value;
-                thisRowHF["ENRHFSTUDSCHLYR"] = YearLabel.Text;
+                thisRowHF["ENRHFSTUDSCHLYR"] = SchoolYearTextBox.Text;
                 thisRowHF["ENRHFSTUDENCODER"] = EncodedTextBox.Text;
                 thisRowHF["ENRHFSTUDTOTALUNITS"] = TotalUnitsLabel.Text;
                 thisRowHF["ENRHFSTUDSTATUS"] = "EN";

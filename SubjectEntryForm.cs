@@ -15,9 +15,16 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace EnrollmentSystem
 {
     public partial class SubjectEntryForm : Form
-    {    
+    {
         bool closedDirectly = true;
         string query = "Select * From SUBJECTFILE";
+
+        List<string> subjCodes = new List<string>();
+        List<string> subjDescs = new List<string>();
+        List<string> subjUnits = new List<string>();
+        List<string> subjCourseCode = new List<string>();
+        List<string> subjRequisiteCategory = new List<string>();
+        List<string> subjRequisiteSubj = new List<string>();
         public SubjectEntryForm()
         {
             InitializeComponent();
@@ -25,8 +32,6 @@ namespace EnrollmentSystem
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            DatabaseHelper databaseHelper = new DatabaseHelper();
-
             if (ValidateClrMethods.AreTextBoxesEmpty(SubjectCodeTextBox, DescriptionTextBox, UnitsTextBox, CurriculumYearTextBox) ||
                 ValidateClrMethods.AreComboBoxesEmpty(OfferingComboBox, CategoryComboBox, CourseCodeComboBox))
             {
@@ -38,38 +43,74 @@ namespace EnrollmentSystem
                 MessageBox.Show("Units field must be an integer and in single digits only");
                 return;
             }
+            
+            DatabaseHelper databaseHelperSF = new DatabaseHelper();
+            databaseHelperSF.ConnectToDatabase(query);
 
-            databaseHelper.ConnectToDatabase(query);
-
-            if (databaseHelper.CheckIfDataInDB(SubjectCodeTextBox.Text, "SFSUBJCODE", query) 
-                && databaseHelper.CheckIfDataInDB(CourseCodeComboBox.Text, "SFSUBJCOURSECODE", query))
+            //if (databaseHelperSF.CheckIfDataInDB(SubjectCodeTextBox.Text, "SFSUBJCODE", query)
+            //    && databaseHelperSF.CheckIfDataInDB(CourseCodeComboBox.Text, "SFSUBJCOURSECODE", query))
+            if (databaseHelperSF.CheckIfDataInDBTwoKeys(SubjectCodeTextBox.Text, CourseCodeComboBox.Text, "SFSUBJCODE"
+                , "SFSUBJCOURSECODE", query))
             {
                 MessageBox.Show("Current subject code with corresponding course code is already in the database");
                 return;
             }
 
-            DataSet thisDataset = new DataSet();
-            databaseHelper.dbDataAdapter.Fill(thisDataset, "SubjectFile");
+            DatabaseHelper databaseHelperReq = new DatabaseHelper();
+            databaseHelperReq.ConnectToDatabase("Select * From SUBJECTPREQFILE");
 
-            DataRow thisRow = thisDataset.Tables["SubjectFile"].NewRow();
-            thisRow["SFSUBJCODE"] = SubjectCodeTextBox.Text;
-            thisRow["SFSUBJDESC"] = DescriptionTextBox.Text;
-            thisRow["SFSUBJUNITS"] = UnitsTextBox.Text;
-            thisRow["SFSUBJREGOFRNG"] = Convert.ToSingle(OfferingComboBox.Text.Substring(0, 1));
-            thisRow["SFSUBJCATEGORY"] = CategoryComboBox.Text.Substring(0, 3);
-            thisRow["SFSUBJSTATUS"] = "AC";
-            thisRow["SFSUBJCOURSECODE"] = CourseCodeComboBox.Text;
-            thisRow["SFSUBJCURRCODE"] = CurriculumYearTextBox.Text;
+            if (!string.IsNullOrWhiteSpace(RequisiteTextBox.Text))
+            {
+                if (databaseHelperSF.CheckIfDataInDB(SubjectCodeTextBox.Text, "SUBJCODE", "Select * From SUBJECTPREQFILE"))
+                {
+                    MessageBox.Show("Current subject code already has requisite data in the database");
+                    return;
+                }
+                if (!(PreRequisiteRadio.Checked || CoRequisiteRadio.Checked))
+                {
+                    MessageBox.Show("Please check either the pre requisite radio or the co requisite radio");
+                    return;
+                }
+            }
 
-            thisDataset.Tables["SubjectFile"].Rows.Add(thisRow);
-            databaseHelper.dbDataAdapter.Update(thisDataset, "SubjectFile");
+            DataSet thisDatasetSF = new DataSet();
+            databaseHelperSF.dbDataAdapter.Fill(thisDatasetSF, "SubjectFile");
+
+            DataRow thisRowSF = thisDatasetSF.Tables["SubjectFile"].NewRow();
+            thisRowSF["SFSUBJCODE"] = SubjectCodeTextBox.Text;
+            thisRowSF["SFSUBJDESC"] = DescriptionTextBox.Text;
+            thisRowSF["SFSUBJUNITS"] = UnitsTextBox.Text;
+            thisRowSF["SFSUBJREGOFRNG"] = Convert.ToSingle(OfferingComboBox.Text.Substring(0, 1));
+            thisRowSF["SFSUBJCATEGORY"] = CategoryComboBox.Text.Substring(0, 3);
+            thisRowSF["SFSUBJSTATUS"] = "AC";
+            thisRowSF["SFSUBJCOURSECODE"] = CourseCodeComboBox.Text;
+            thisRowSF["SFSUBJCURRCODE"] = CurriculumYearTextBox.Text;
+
+            thisDatasetSF.Tables["SubjectFile"].Rows.Add(thisRowSF);
+            databaseHelperSF.dbDataAdapter.Update(thisDatasetSF, "SubjectFile");
+
+            if (!string.IsNullOrWhiteSpace(RequisiteTextBox.Text))
+            {
+                DataSet thisDataSetReq = new DataSet();
+                databaseHelperReq.dbDataAdapter.Fill(thisDataSetReq, "SubjectPreqFile");
+
+                DataRow thisRowReq = thisDataSetReq.Tables["SubjectPreqFile"].NewRow();
+                thisRowReq["SUBJCODE"] = SubjectCodeTextBox.Text;
+                thisRowReq["SUBJPRECODE"] = RequisiteTextBox.Text;
+                if (PreRequisiteRadio.Checked)
+                    thisRowReq["SUBJCATEGORY"] = "PR";
+                else if (CoRequisiteRadio.Checked)
+                    thisRowReq["SUBJCATEGORY"] = "CR";
+
+                thisDataSetReq.Tables["SubjectPreqFile"].Rows.Add(thisRowReq);
+                databaseHelperReq.dbDataAdapter.Update(thisDataSetReq, "SubjectPreqFile");
+            }
 
             MessageBox.Show("Recorded");
         }
 
         private void RequisiteTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // FIX - what if 2 of the same subjcode but diff currcode when pressing enter in textbox
             if (e.KeyChar == (char)Keys.Enter)
             {
                 if (ValidateClrMethods.CheckIfDataInDGV(RequisiteTextBox.Text, SubjectDataGridView, "SubjectCodeColumn"))
@@ -84,28 +125,54 @@ namespace EnrollmentSystem
                 int index;
                 databaseHelper.FetchDataFromDB(query, "SFSUBJCODE", "SFSUBJDESC", "SFSUBJUNITS", "SFSUBJCOURSECODE");
 
-                List<string> subjCodes = databaseHelper.resultListArray[0].ToList();
-                List<string> subjDescs = databaseHelper.resultListArray[1].ToList();
-                List<string> subjUnits = databaseHelper.resultListArray[2].ToList();
-                List<string> subjCourseCode = databaseHelper.resultListArray[3].ToList();
-
-                int count = 0;
-                for (int i = 0; i < subjCodes.Count; i++)
+                subjCodes.Clear();
+                subjDescs.Clear();
+                subjUnits.Clear();
+                subjCourseCode.Clear();
+                foreach (var resultArray in databaseHelper.resultListArray)
                 {
-                    if (RequisiteTextBox.Text == subjCodes[i])
+                    if (resultArray != null)
                     {
-                        count++;
+                        subjCodes.Add(resultArray[0]);
+                        subjDescs.Add(resultArray[1]);
+                        subjUnits.Add(resultArray[2]);
+                        subjCourseCode.Add(resultArray[3]);
                     }
                 }
-                if (count == 0)
+
+                if (subjCodes.Count == 0)
                 {
-                    MessageBox.Show("Subject Code Not Found");
+                    MessageBox.Show("Subject database currently empty. Please enter some data first");
                     return;
                 }
-                else
-                {
 
+                bool found = false;
+                for (int i = 0; i < subjCodes.Count; i++)
+                {
+                    if (RequisiteTextBox.Text.Trim().ToUpper() == subjCodes[i].Trim().ToUpper())
+                    {
+                        found = true;
+                        index = SubjectDataGridView.Rows.Add();
+                        SubjectDataGridView.Rows[index].Cells["SubjectCodeColumn"].Value = subjCodes[i];
+                        SubjectDataGridView.Rows[index].Cells["DescriptionColumn"].Value = subjDescs[i];
+                        SubjectDataGridView.Rows[index].Cells["UnitsColumn"].Value = subjUnits[i];
+                        SubjectDataGridView.Rows[index].Cells["CourseCodeColumn"].Value = subjCourseCode[i];
+
+                        if (databaseHelper.CheckAndFetchFromDB(subjCodes[i], "SUBJCODE", "Select * From SUBJECTPREQFILE", "SUBJPRECODE", "SUBJCATEGORY"))
+                        {
+                            SubjectDataGridView.Rows[index].Cells["CoPreRequisiteColumn"].Value = databaseHelper.resultList[2];
+                            SubjectDataGridView.Rows[index].Cells["RequisiteSubjectColumn"].Value = databaseHelper.resultList[1];
+                        }
+                        else
+                        {
+                            SubjectDataGridView.Rows[index].Cells["CoPreRequisiteColumn"].Value = "N/A";
+                            SubjectDataGridView.Rows[index].Cells["RequisiteSubjectColumn"].Value = "N/A";
+                        }
+                    }
                 }
+                if (!found)
+                    MessageBox.Show("Subject Code Not Found");
+
                 //if (databaseHelper.CheckAndFetchFromDB(RequisiteTextBox.Text, "SFSUBJCODE", query, "SFSUBJDESC", "SFSUBJUNITS"))
                 //{
                 //    index = SubjectDataGridView.Rows.Add();
@@ -181,7 +248,7 @@ namespace EnrollmentSystem
             this.Close();
         }
 
-        private void pictureBox1_MouseHover(object sender, EventArgs e)
+        private void RequisitePromptPicBox_MouseHover(object sender, EventArgs e)
         {
             RequisiteTextBoxToolTip.Show("Press Enter to display subject information" +
                 ", otherwise fill up this field and \nclick a radio button to input the requisite subject for the subject code above", RequisitePromptPicBox);

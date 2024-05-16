@@ -74,6 +74,7 @@
             this.UnitsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CourseCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CoPreRequisiteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RequisiteSubjectColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -273,11 +274,12 @@
             this.RequisitePromptPicBox.Size = new System.Drawing.Size(19, 19);
             this.RequisitePromptPicBox.TabIndex = 20;
             this.RequisitePromptPicBox.TabStop = false;
-            this.RequisitePromptPicBox.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
+            this.RequisitePromptPicBox.MouseHover += new System.EventHandler(this.RequisitePromptPicBox_MouseHover);
             // 
             // CoRequisiteRadio
             // 
             this.CoRequisiteRadio.AutoSize = true;
+            this.CoRequisiteRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CoRequisiteRadio.Location = new System.Drawing.Point(653, 34);
             this.CoRequisiteRadio.Margin = new System.Windows.Forms.Padding(4);
             this.CoRequisiteRadio.Name = "CoRequisiteRadio";
@@ -290,6 +292,7 @@
             // PreRequisiteRadio
             // 
             this.PreRequisiteRadio.AutoSize = true;
+            this.PreRequisiteRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.PreRequisiteRadio.Location = new System.Drawing.Point(464, 33);
             this.PreRequisiteRadio.Margin = new System.Windows.Forms.Padding(4);
             this.PreRequisiteRadio.Name = "PreRequisiteRadio";
@@ -329,7 +332,8 @@
             this.DescriptionColumn,
             this.UnitsColumn,
             this.CourseCodeColumn,
-            this.CoPreRequisiteColumn});
+            this.CoPreRequisiteColumn,
+            this.RequisiteSubjectColumn});
             this.SubjectDataGridView.Location = new System.Drawing.Point(47, 83);
             this.SubjectDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SubjectDataGridView.Name = "SubjectDataGridView";
@@ -593,6 +597,14 @@
             this.CoPreRequisiteColumn.ReadOnly = true;
             this.CoPreRequisiteColumn.Width = 82;
             // 
+            // RequisiteSubjectColumn
+            // 
+            this.RequisiteSubjectColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.RequisiteSubjectColumn.HeaderText = "Requisite Subject";
+            this.RequisiteSubjectColumn.MinimumWidth = 6;
+            this.RequisiteSubjectColumn.Name = "RequisiteSubjectColumn";
+            this.RequisiteSubjectColumn.ReadOnly = true;
+            // 
             // SubjectEntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -675,6 +687,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CourseCodeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CoPreRequisiteColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RequisiteSubjectColumn;
     }
 }
 

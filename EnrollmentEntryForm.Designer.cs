@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnrollmentEntryForm));
             this.EnrollmentTablePanel2 = new System.Windows.Forms.Panel();
             this.ClearButton = new System.Windows.Forms.Button();
@@ -72,6 +72,7 @@
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subjectEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubjectScheduleEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +82,8 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label9 = new System.Windows.Forms.Label();
+            this.SchoolYearTextBox = new System.Windows.Forms.TextBox();
             this.EnrollmentTablePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EnrollmentDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -97,6 +99,8 @@
             // EnrollmentTablePanel2
             // 
             this.EnrollmentTablePanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(42)))), ((int)(((byte)(75)))));
+            this.EnrollmentTablePanel2.Controls.Add(this.SchoolYearTextBox);
+            this.EnrollmentTablePanel2.Controls.Add(this.label9);
             this.EnrollmentTablePanel2.Controls.Add(this.ClearButton);
             this.EnrollmentTablePanel2.Controls.Add(this.SaveButton);
             this.EnrollmentTablePanel2.Controls.Add(this.label16);
@@ -113,7 +117,7 @@
             this.ClearButton.BackColor = System.Drawing.Color.Gainsboro;
             this.ClearButton.Enabled = false;
             this.ClearButton.Font = new System.Drawing.Font("Segoe UI Light", 7.8F);
-            this.ClearButton.Location = new System.Drawing.Point(544, 192);
+            this.ClearButton.Location = new System.Drawing.Point(562, 193);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(86, 23);
             this.ClearButton.TabIndex = 33;
@@ -140,7 +144,7 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label16.Location = new System.Drawing.Point(39, 196);
+            this.label16.Location = new System.Drawing.Point(14, 196);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(97, 20);
             this.label16.TabIndex = 32;
@@ -152,23 +156,23 @@
             this.EncodedTextBox.Enabled = false;
             this.EncodedTextBox.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EncodedTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.EncodedTextBox.Location = new System.Drawing.Point(141, 194);
+            this.EncodedTextBox.Location = new System.Drawing.Point(116, 194);
             this.EncodedTextBox.Name = "EncodedTextBox";
-            this.EncodedTextBox.Size = new System.Drawing.Size(209, 25);
+            this.EncodedTextBox.Size = new System.Drawing.Size(149, 25);
             this.EncodedTextBox.TabIndex = 32;
             // 
             // EnrollmentDataGridView
             // 
             this.EnrollmentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.EnrollmentDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Light", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.EnrollmentDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Light", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.EnrollmentDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.EnrollmentDataGridView.ColumnHeadersHeight = 30;
             this.EnrollmentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.EDPCodeColumn,
@@ -178,14 +182,14 @@
             this.DaysColumn,
             this.RoomColumn,
             this.UnitsColumn});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.EnrollmentDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.EnrollmentDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.EnrollmentDataGridView.Enabled = false;
             this.EnrollmentDataGridView.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.EnrollmentDataGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -590,9 +594,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(-40, -11);
+            this.menuStrip1.Location = new System.Drawing.Point(28, 13);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(156, 59);
+            this.menuStrip1.Size = new System.Drawing.Size(88, 35);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -606,10 +610,18 @@
             this.FileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FileToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
-            this.FileToolStripMenuItem.Size = new System.Drawing.Size(149, 29);
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(81, 29);
             this.FileToolStripMenuItem.Text = "📁 File";
             this.FileToolStripMenuItem.DropDownClosed += new System.EventHandler(this.FileToolStripMenuItem_DropDownClosed);
             this.FileToolStripMenuItem.DropDownOpened += new System.EventHandler(this.FileToolStripMenuItem_DropDownOpened);
+            // 
+            // homeToolStripMenuItem
+            // 
+            this.homeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
+            this.homeToolStripMenuItem.Text = "🏠 Home";
+            this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
             // 
             // subjectEntryToolStripMenuItem
             // 
@@ -696,13 +708,29 @@
             this.panel4.Size = new System.Drawing.Size(976, 10);
             this.panel4.TabIndex = 24;
             // 
-            // homeToolStripMenuItem
+            // label9
             // 
-            this.homeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
-            this.homeToolStripMenuItem.Text = "🏠 Home";
-            this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label9.Location = new System.Drawing.Point(304, 196);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(94, 20);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "School Year:";
+            // 
+            // SchoolYearTextBox
+            // 
+            this.SchoolYearTextBox.AcceptsReturn = true;
+            this.SchoolYearTextBox.BackColor = System.Drawing.Color.Silver;
+            this.SchoolYearTextBox.Enabled = false;
+            this.SchoolYearTextBox.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SchoolYearTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.SchoolYearTextBox.Location = new System.Drawing.Point(402, 192);
+            this.SchoolYearTextBox.Name = "SchoolYearTextBox";
+            this.SchoolYearTextBox.Size = new System.Drawing.Size(111, 25);
+            this.SchoolYearTextBox.TabIndex = 35;
             // 
             // EnrollmentEntryForm
             // 
@@ -792,5 +820,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RoomColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
+        private System.Windows.Forms.TextBox SchoolYearTextBox;
+        private System.Windows.Forms.Label label9;
     }
 }

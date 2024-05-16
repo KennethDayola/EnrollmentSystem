@@ -53,30 +53,25 @@ namespace EnrollmentSystem
             return found;
         }
 
-        /// <summary>
-        /// returns how many values are equal to the one provided in the parameter
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="columnName"></param>
-        /// <param name="query"></param>
-        /// <returns></returns>
-        public int CheckHowManyOfSameInDB(string value, string columnName, string query)
+        public bool CheckIfDataInDBTwoKeys(string value1, string value2, string columnName1, string columnName2, string query)
         {
-            int count = 0;
+            bool found = false;
             dbConnection.Open();
             dbCommand = dbConnection.CreateCommand();
             dbCommand.CommandText = query;
             dbDataReader = dbCommand.ExecuteReader();
             while (dbDataReader.Read())
             {
-                if (dbDataReader[columnName].ToString().Trim().ToUpper() == value.Trim().ToUpper())
+                if (dbDataReader[columnName1].ToString().Trim().ToUpper() == value1.Trim().ToUpper() &&
+                    dbDataReader[columnName2].ToString().Trim().ToUpper() == value2.Trim().ToUpper())
                 {
-                    count++;
+                    found = true;
+                    break;
                 }
             }
             dbConnection.Close();
-            return count;
-        } 
+            return found;
+        }
 
         /// <summary>
         /// fetches a row from the database based on the query and columns provided

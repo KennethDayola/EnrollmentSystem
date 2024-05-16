@@ -48,6 +48,11 @@ namespace EnrollmentSystem
                 MessageBox.Show("The input in the school year textbox must be an integer");
                 return;
             }
+            if (int.TryParse(DaysTextBox.Text, out _))
+            {
+                MessageBox.Show("\"Days\" field should not contain an integer, instead it should be characters e.g \"MWF\", \"TTH\"");
+                return;
+            }
             if (DaysTextBox.Text.Length > 3 || SectionTextBox.Text.Length > 3 || RoomTextBox.Text.Length > 3)
             {
                 MessageBox.Show("Either the days textbox, section textbox, or the room textbox is over the limit of 3 characters");
@@ -103,7 +108,6 @@ namespace EnrollmentSystem
             databaseHelper.FetchDataFromDB(query, "SFSUBJCODE", "SFSUBJDESC");
             foreach (var resultArray in databaseHelper.resultListArray)
             {
-                // Make sure the array has at least 2 elements to avoid IndexOutOfRangeException
                 if (resultArray.Length >= 2)
                 {
                     subjCodes.Add(resultArray[0]);
