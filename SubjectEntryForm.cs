@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EnrollmentSystem
 {
@@ -80,15 +82,39 @@ namespace EnrollmentSystem
                 databaseHelper.dbConnection = new OleDbConnection(DatabaseHelper.connectionString);
 
                 int index;
-                if (databaseHelper.CheckAndFetchFromDB(RequisiteTextBox.Text, "SFSUBJCODE", query, "SFSUBJDESC", "SFSUBJUNITS"))
+                databaseHelper.FetchDataFromDB(query, "SFSUBJCODE", "SFSUBJDESC", "SFSUBJUNITS", "SFSUBJCOURSECODE");
+
+                List<string> subjCodes = databaseHelper.resultListArray[0].ToList();
+                List<string> subjDescs = databaseHelper.resultListArray[1].ToList();
+                List<string> subjUnits = databaseHelper.resultListArray[2].ToList();
+                List<string> subjCourseCode = databaseHelper.resultListArray[3].ToList();
+
+                int count = 0;
+                for (int i = 0; i < subjCodes.Count; i++)
                 {
-                    index = SubjectDataGridView.Rows.Add();
-                    SubjectDataGridView.Rows[index].Cells["SubjectCodeColumn"].Value = databaseHelper.resultList[0];
-                    SubjectDataGridView.Rows[index].Cells["DescriptionColumn"].Value = databaseHelper.resultList[1];
-                    SubjectDataGridView.Rows[index].Cells["UnitsColumn"].Value = databaseHelper.resultList[2];
+                    if (RequisiteTextBox.Text == subjCodes[i])
+                    {
+                        count++;
+                    }
+                }
+                if (count == 0)
+                {
+                    MessageBox.Show("Subject Code Not Found");
+                    return;
                 }
                 else
-                    MessageBox.Show("Subject Code Not Found");
+                {
+
+                }
+                //if (databaseHelper.CheckAndFetchFromDB(RequisiteTextBox.Text, "SFSUBJCODE", query, "SFSUBJDESC", "SFSUBJUNITS"))
+                //{
+                //    index = SubjectDataGridView.Rows.Add();
+                //    SubjectDataGridView.Rows[index].Cells["SubjectCodeColumn"].Value = databaseHelper.resultList[0];
+                //    SubjectDataGridView.Rows[index].Cells["DescriptionColumn"].Value = databaseHelper.resultList[1];
+                //    SubjectDataGridView.Rows[index].Cells["UnitsColumn"].Value = databaseHelper.resultList[2];
+                //}
+                //else
+                //    MessageBox.Show("Subject Code Not Found");
             }
         }
 
@@ -144,6 +170,21 @@ namespace EnrollmentSystem
             this.Hide();
             enrollmentEntryForm.Show();
             this.Close();
+        }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closedDirectly = false;
+            HomeForm homeForm = new HomeForm();
+            this.Hide();
+            homeForm.Show();
+            this.Close();
+        }
+
+        private void pictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            RequisiteTextBoxToolTip.Show("Press Enter to display subject information" +
+                ", otherwise fill up this field and \nclick a radio button to input the requisite subject for the subject code above", RequisitePromptPicBox);
         }
     }
  }

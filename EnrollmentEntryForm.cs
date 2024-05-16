@@ -15,11 +15,13 @@ using System.Windows.Forms;
 
 namespace EnrollmentSystem
 {
-    //TODO: Add menu
-    //TODO: Handle prequisite and co requisite in subject entry form by adding textboxes needed and also dgv there
-    //TODO: Handle two subject code same in the subject schedule entry form
-    //TODO: When student has not taken a pre requisite subject do not allow them to take the subject when enrolled
-    //TODO: Add curriculum code in requisite info for duplicate subjects
+    //TODO: Add menu YIP DONE
+    //TODO: Handle prequisite and co requisite in subject entry form (?) - Logic already good i think
+    //TODO: Handle two subject code same in the subject schedule entry form (?) - Don't need no one will know
+    //TODO: When student has not taken the pre/co requisite subject do not allow them to take the subject when enrolled YIP
+    //TODO: Subject requisite
+    //TODO: Add curriculum code in requisite info for duplicate subjects and also add requisite actually YIS
+    //TODO: Add requisite column, add a definition under the textbox of the requisite textbox YIP DONE
     //TODO: Is WI really the status cry
     public partial class EnrollmentEntryForm : Form
     {
@@ -222,14 +224,20 @@ namespace EnrollmentSystem
                             currentDays = currentDays.Replace(dayConstants[j], "");
                             if (j == 4)
                             {
-                                if (EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString().Contains(dayConstants[j])
-                                    && !EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString().Contains(dayConstants[2]))
+                                string dgvIndexDays = EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString().Trim().ToUpper();
+                                for (i = 0; i < dgvIndexDays.Length; i++)
                                 {
-                                    MessageBox.Show(errorMessage);
-                                    return false;
+                                    if (dgvIndexDays[i] == 'T')
+                                    {
+                                        if (!(i + 1 < dgvIndexDays.Length && dgvIndexDays[i + 1] == 'H'))
+                                        {
+                                            MessageBox.Show(errorMessage);
+                                            return false;
+                                        }
+                                    }
                                 }
                             }
-                            else if (EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString().Contains(dayConstants[j]))
+                            else if (EnrollmentDataGridView.Rows[i].Cells["DaysColumn"].Value.ToString().Trim().ToUpper().Contains(dayConstants[j]))
                             {
                                 MessageBox.Show(errorMessage);
                                 return false;
@@ -421,6 +429,15 @@ namespace EnrollmentSystem
             TotalUnitsLabel.Text = null;
             TotalUnitsLabel.BackColor = Color.Gray;
             EnrollmentDataGridView.Rows.Clear();
+        }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closedDirectly = false;
+            HomeForm homeForm = new HomeForm();
+            this.Hide();
+            homeForm.Show();
+            this.Close();
         }
     }
 }

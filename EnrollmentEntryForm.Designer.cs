@@ -30,7 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panel7 = new System.Windows.Forms.Panel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnrollmentEntryForm));
             this.EnrollmentTablePanel2 = new System.Windows.Forms.Panel();
             this.ClearButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -66,6 +66,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.IDNumberTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +81,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EnrollmentTablePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EnrollmentDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -91,14 +93,6 @@
             this.menuStrip1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel7.Location = new System.Drawing.Point(0, 545);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1007, 10);
-            this.panel7.TabIndex = 25;
             // 
             // EnrollmentTablePanel2
             // 
@@ -281,7 +275,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::EnrollmentSystem.Properties.Resources.bgEnrollbackup1;
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.EnrollmentTablePanel);
             this.panel1.Controls.Add(this.panel6);
@@ -538,6 +532,14 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "ID Number";
             // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel7.Location = new System.Drawing.Point(0, 545);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1007, 10);
+            this.panel7.TabIndex = 25;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(0)))), ((int)(((byte)(124)))));
@@ -588,23 +590,24 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(28, 13);
+            this.menuStrip1.Location = new System.Drawing.Point(-40, -11);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(88, 35);
+            this.menuStrip1.Size = new System.Drawing.Size(156, 59);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // FileToolStripMenuItem
             // 
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.homeToolStripMenuItem,
             this.subjectEntryToolStripMenuItem,
             this.SubjectScheduleEntryToolStripMenuItem,
             this.studentEntryToolStripMenuItem});
             this.FileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FileToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
-            this.FileToolStripMenuItem.Size = new System.Drawing.Size(81, 29);
-            this.FileToolStripMenuItem.Text = "🏚️ File";
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(149, 29);
+            this.FileToolStripMenuItem.Text = "📁 File";
             this.FileToolStripMenuItem.DropDownClosed += new System.EventHandler(this.FileToolStripMenuItem_DropDownClosed);
             this.FileToolStripMenuItem.DropDownOpened += new System.EventHandler(this.FileToolStripMenuItem_DropDownOpened);
             // 
@@ -693,6 +696,14 @@
             this.panel4.Size = new System.Drawing.Size(976, 10);
             this.panel4.TabIndex = 24;
             // 
+            // homeToolStripMenuItem
+            // 
+            this.homeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
+            this.homeToolStripMenuItem.Text = "🏠 Home";
+            this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
+            // 
             // EnrollmentEntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -780,5 +791,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DaysColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn RoomColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn;
+        private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
     }
 }

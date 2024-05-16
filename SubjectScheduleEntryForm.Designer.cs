@@ -38,6 +38,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
             this.SubjFoundIndicatorLabel = new System.Windows.Forms.Label();
@@ -69,13 +70,13 @@
             this.StudentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enrollmentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.MaxSizeTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.ClearButton = new System.Windows.Forms.Button();
             this.XMComboBox = new System.Windows.Forms.ComboBox();
             this.SchoolYearTextBox = new System.Windows.Forms.TextBox();
             this.RoomTextBox = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.MaxSizeTextBox = new System.Windows.Forms.TextBox();
+            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -225,6 +226,17 @@
             this.groupBox1.Size = new System.Drawing.Size(707, 438);
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(403, 138);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(131, 20);
+            this.label20.TabIndex = 40;
+            this.label20.Text = "Classroom Max Size";
             // 
             // label13
             // 
@@ -489,9 +501,9 @@
             this.ExitToolStripMenuItem,
             this.FileToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(214, 24);
+            this.menuStrip1.Location = new System.Drawing.Point(141, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(85, 56);
+            this.menuStrip1.Size = new System.Drawing.Size(158, 80);
             this.menuStrip1.TabIndex = 41;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -501,21 +513,22 @@
             this.ExitToolStripMenuItem.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(78, 25);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(151, 25);
             this.ExitToolStripMenuItem.Text = "🚪 Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // FileToolStripMenuItem
             // 
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.homeToolStripMenuItem,
             this.SubjectEntryToolStripMenuItem,
             this.StudentEntryToolStripMenuItem,
             this.enrollmentEntryToolStripMenuItem});
             this.FileToolStripMenuItem.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FileToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
-            this.FileToolStripMenuItem.Size = new System.Drawing.Size(78, 25);
-            this.FileToolStripMenuItem.Text = "🏚️ File";
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(151, 25);
+            this.FileToolStripMenuItem.Text = "📁 File";
             // 
             // SubjectEntryToolStripMenuItem
             // 
@@ -555,6 +568,15 @@
             this.groupBox2.Size = new System.Drawing.Size(234, 438);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
+            // 
+            // MaxSizeTextBox
+            // 
+            this.MaxSizeTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.MaxSizeTextBox.Location = new System.Drawing.Point(27, 136);
+            this.MaxSizeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaxSizeTextBox.Name = "MaxSizeTextBox";
+            this.MaxSizeTextBox.Size = new System.Drawing.Size(76, 22);
+            this.MaxSizeTextBox.TabIndex = 41;
             // 
             // label14
             // 
@@ -612,25 +634,13 @@
             this.RoomTextBox.Size = new System.Drawing.Size(100, 22);
             this.RoomTextBox.TabIndex = 20;
             // 
-            // label20
+            // homeToolStripMenuItem
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(403, 138);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(131, 20);
-            this.label20.TabIndex = 40;
-            this.label20.Text = "Classroom Max Size";
-            // 
-            // MaxSizeTextBox
-            // 
-            this.MaxSizeTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.MaxSizeTextBox.Location = new System.Drawing.Point(27, 136);
-            this.MaxSizeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaxSizeTextBox.Name = "MaxSizeTextBox";
-            this.MaxSizeTextBox.Size = new System.Drawing.Size(76, 22);
-            this.MaxSizeTextBox.TabIndex = 41;
+            this.homeToolStripMenuItem.Font = new System.Drawing.Font("Century Gothic", 10.25F);
+            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(256, 30);
+            this.homeToolStripMenuItem.Text = "🏠 Home";
+            this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
             // 
             // SubjectScheduleEntryForm
             // 
@@ -715,6 +725,7 @@
         private System.Windows.Forms.ToolStripMenuItem enrollmentEntryToolStripMenuItem;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox MaxSizeTextBox;
+        private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
     }
 }
 

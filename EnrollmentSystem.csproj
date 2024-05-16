@@ -53,6 +53,12 @@
     <Compile Include="EnrollmentEntryForm.Designer.cs">
       <DependentUpon>EnrollmentEntryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeForm.Designer.cs">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StudentEntryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <Compile Include="ValidateClrMethods.cs" />
     <EmbeddedResource Include="EnrollmentEntryForm.resx">
       <DependentUpon>EnrollmentEntryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeForm.resx">
+      <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentEntryForm.resx">
       <DependentUpon>StudentEntryForm.cs</DependentUpon>
@@ -138,6 +147,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bgEnrollbackup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="homePic.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="homeLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="promptsubjJ.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

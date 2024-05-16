@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -37,23 +38,19 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubjectScheduleEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enrollmentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.RequisitePromptPicBox = new System.Windows.Forms.PictureBox();
             this.CoRequisiteRadio = new System.Windows.Forms.RadioButton();
             this.PreRequisiteRadio = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.RequisiteTextBox = new System.Windows.Forms.TextBox();
             this.SubjectDataGridView = new System.Windows.Forms.DataGridView();
-            this.SubjectCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescriptionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CoPreRequisiteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -71,10 +68,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.RequisiteTextBoxToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.SubjectCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescriptionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CourseCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CoPreRequisiteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RequisitePromptPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SubjectDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -151,9 +155,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ExitToolStripMenuItem,
             this.FileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(582, 43);
+            this.menuStrip1.Location = new System.Drawing.Point(780, 42);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(320, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(170, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -170,6 +174,7 @@
             // FileToolStripMenuItem
             // 
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.homeToolStripMenuItem,
             this.SubjectScheduleEntryToolStripMenuItem,
             this.studentEntryToolStripMenuItem,
             this.enrollmentEntryToolStripMenuItem});
@@ -177,9 +182,17 @@
             this.FileToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
             this.FileToolStripMenuItem.Size = new System.Drawing.Size(82, 29);
-            this.FileToolStripMenuItem.Text = "🏚️ File";
+            this.FileToolStripMenuItem.Text = "📁 File";
             this.FileToolStripMenuItem.DropDownClosed += new System.EventHandler(this.FileToolStripMenuItem_DropDownClosed);
             this.FileToolStripMenuItem.DropDownOpened += new System.EventHandler(this.FileToolStripMenuItem_DropDownOpened);
+            // 
+            // homeToolStripMenuItem
+            // 
+            this.homeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
+            this.homeToolStripMenuItem.Text = "🏠 Home";
+            this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
             // 
             // SubjectScheduleEntryToolStripMenuItem
             // 
@@ -211,8 +224,6 @@
             this.panel1.BackgroundImage = global::EnrollmentSystem.Properties.Resources.bookPattern;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.CancelButton);
             this.panel1.Controls.Add(this.SaveButton);
@@ -220,56 +231,49 @@
             this.panel1.Location = new System.Drawing.Point(-23, 103);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1045, 688);
+            this.panel1.Size = new System.Drawing.Size(1083, 714);
             this.panel1.TabIndex = 16;
             // 
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Segoe UI Variable Display Semil", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.DimGray;
-            this.label16.Location = new System.Drawing.Point(468, 308);
+            this.label16.Location = new System.Drawing.Point(183, 294);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(115, 25);
+            this.label16.Size = new System.Drawing.Size(773, 25);
             this.label16.TabIndex = 17;
-            this.label16.Text = "________________________________________________";
-            // 
-            // label15
-            // 
-            this.label15.Font = new System.Drawing.Font("Segoe UI Variable Display Semil", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.DimGray;
-            this.label15.Location = new System.Drawing.Point(693, 308);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(320, 25);
-            this.label15.TabIndex = 16;
-            this.label15.Text = "________________________________________________";
-            // 
-            // label14
-            // 
-            this.label14.Font = new System.Drawing.Font("Segoe UI Variable Display Semil", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.DimGray;
-            this.label14.Location = new System.Drawing.Point(51, 303);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(264, 25);
-            this.label14.TabIndex = 13;
-            this.label14.Text = "________________________________________________";
+            this.label16.Text = "_________________________________________________________________________________" +
+    "______________________________";
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.groupBox2.Controls.Add(this.RequisitePromptPicBox);
             this.groupBox2.Controls.Add(this.CoRequisiteRadio);
             this.groupBox2.Controls.Add(this.PreRequisiteRadio);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.RequisiteTextBox);
             this.groupBox2.Controls.Add(this.SubjectDataGridView);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Variable Display Semil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(76, 354);
+            this.groupBox2.Location = new System.Drawing.Point(76, 347);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(901, 299);
+            this.groupBox2.Size = new System.Drawing.Size(901, 268);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Requisite Information 🖊️";
+            // 
+            // RequisitePromptPicBox
+            // 
+            this.RequisitePromptPicBox.BackgroundImage = global::EnrollmentSystem.Properties.Resources.promptsubjJ;
+            this.RequisitePromptPicBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.RequisitePromptPicBox.Location = new System.Drawing.Point(301, 34);
+            this.RequisitePromptPicBox.Name = "RequisitePromptPicBox";
+            this.RequisitePromptPicBox.Size = new System.Drawing.Size(19, 19);
+            this.RequisitePromptPicBox.TabIndex = 20;
+            this.RequisitePromptPicBox.TabStop = false;
+            this.RequisitePromptPicBox.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
             // 
             // CoRequisiteRadio
             // 
@@ -318,60 +322,33 @@
             // 
             // SubjectDataGridView
             // 
-            this.SubjectDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SubjectDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.SubjectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SubjectDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SubjectCodeColumn,
             this.DescriptionColumn,
             this.UnitsColumn,
+            this.CourseCodeColumn,
             this.CoPreRequisiteColumn});
-            this.SubjectDataGridView.Location = new System.Drawing.Point(47, 74);
+            this.SubjectDataGridView.Location = new System.Drawing.Point(47, 83);
             this.SubjectDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SubjectDataGridView.Name = "SubjectDataGridView";
             this.SubjectDataGridView.ReadOnly = true;
             this.SubjectDataGridView.RowHeadersVisible = false;
             this.SubjectDataGridView.RowHeadersWidth = 51;
             this.SubjectDataGridView.RowTemplate.Height = 24;
-            this.SubjectDataGridView.Size = new System.Drawing.Size(823, 196);
+            this.SubjectDataGridView.Size = new System.Drawing.Size(823, 160);
             this.SubjectDataGridView.TabIndex = 16;
-            // 
-            // SubjectCodeColumn
-            // 
-            this.SubjectCodeColumn.HeaderText = "Subject Code";
-            this.SubjectCodeColumn.MinimumWidth = 6;
-            this.SubjectCodeColumn.Name = "SubjectCodeColumn";
-            this.SubjectCodeColumn.ReadOnly = true;
-            // 
-            // DescriptionColumn
-            // 
-            this.DescriptionColumn.HeaderText = "Description";
-            this.DescriptionColumn.MinimumWidth = 6;
-            this.DescriptionColumn.Name = "DescriptionColumn";
-            this.DescriptionColumn.ReadOnly = true;
-            // 
-            // UnitsColumn
-            // 
-            this.UnitsColumn.HeaderText = "Units";
-            this.UnitsColumn.MinimumWidth = 6;
-            this.UnitsColumn.Name = "UnitsColumn";
-            this.UnitsColumn.ReadOnly = true;
-            // 
-            // CoPreRequisiteColumn
-            // 
-            this.CoPreRequisiteColumn.HeaderText = "Co/Pre";
-            this.CoPreRequisiteColumn.MinimumWidth = 6;
-            this.CoPreRequisiteColumn.Name = "CoPreRequisiteColumn";
-            this.CoPreRequisiteColumn.ReadOnly = true;
             // 
             // CancelButton
             // 
             this.CancelButton.BackColor = System.Drawing.Color.White;
-            this.CancelButton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.CancelButton.Location = new System.Drawing.Point(588, 310);
+            this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CancelButton.Location = new System.Drawing.Point(625, 635);
             this.CancelButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(100, 25);
+            this.CancelButton.Size = new System.Drawing.Size(100, 27);
             this.CancelButton.TabIndex = 15;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = false;
@@ -380,11 +357,12 @@
             // SaveButton
             // 
             this.SaveButton.BackColor = System.Drawing.Color.White;
-            this.SaveButton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.SaveButton.Location = new System.Drawing.Point(345, 310);
+            this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.SaveButton.Location = new System.Drawing.Point(361, 635);
             this.SaveButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(100, 25);
+            this.SaveButton.Size = new System.Drawing.Size(100, 27);
             this.SaveButton.TabIndex = 14;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = false;
@@ -573,13 +551,55 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Subject Code";
             // 
+            // SubjectCodeColumn
+            // 
+            this.SubjectCodeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SubjectCodeColumn.HeaderText = "Subject Code";
+            this.SubjectCodeColumn.MinimumWidth = 6;
+            this.SubjectCodeColumn.Name = "SubjectCodeColumn";
+            this.SubjectCodeColumn.ReadOnly = true;
+            // 
+            // DescriptionColumn
+            // 
+            this.DescriptionColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DescriptionColumn.HeaderText = "Description";
+            this.DescriptionColumn.MinimumWidth = 6;
+            this.DescriptionColumn.Name = "DescriptionColumn";
+            this.DescriptionColumn.ReadOnly = true;
+            // 
+            // UnitsColumn
+            // 
+            this.UnitsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.UnitsColumn.HeaderText = "Units";
+            this.UnitsColumn.MinimumWidth = 6;
+            this.UnitsColumn.Name = "UnitsColumn";
+            this.UnitsColumn.ReadOnly = true;
+            this.UnitsColumn.Width = 67;
+            // 
+            // CourseCodeColumn
+            // 
+            this.CourseCodeColumn.HeaderText = "Course Code";
+            this.CourseCodeColumn.MinimumWidth = 6;
+            this.CourseCodeColumn.Name = "CourseCodeColumn";
+            this.CourseCodeColumn.ReadOnly = true;
+            this.CourseCodeColumn.Width = 125;
+            // 
+            // CoPreRequisiteColumn
+            // 
+            this.CoPreRequisiteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CoPreRequisiteColumn.HeaderText = "Co/Pre";
+            this.CoPreRequisiteColumn.MinimumWidth = 6;
+            this.CoPreRequisiteColumn.Name = "CoPreRequisiteColumn";
+            this.CoPreRequisiteColumn.ReadOnly = true;
+            this.CoPreRequisiteColumn.Width = 82;
+            // 
             // SubjectEntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(65)))));
             this.BackgroundImage = global::EnrollmentSystem.Properties.Resources.gradient;
-            this.ClientSize = new System.Drawing.Size(1023, 790);
+            this.ClientSize = new System.Drawing.Size(1023, 813);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.panel3);
@@ -600,6 +620,7 @@
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RequisitePromptPicBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SubjectDataGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -634,14 +655,8 @@
         private System.Windows.Forms.TextBox RequisiteTextBox;
         private System.Windows.Forms.RadioButton CoRequisiteRadio;
         private System.Windows.Forms.RadioButton PreRequisiteRadio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectCodeColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DescriptionColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CoPreRequisiteColumn;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label10;
@@ -652,6 +667,14 @@
         private System.Windows.Forms.ToolStripMenuItem studentEntryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enrollmentEntryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
+        private System.Windows.Forms.PictureBox RequisitePromptPicBox;
+        private System.Windows.Forms.ToolTip RequisiteTextBoxToolTip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectCodeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescriptionColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CourseCodeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CoPreRequisiteColumn;
     }
 }
 

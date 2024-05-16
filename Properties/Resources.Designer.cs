@@ -123,6 +123,26 @@ namespace EnrollmentSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap homeLogo {
+            get {
+                object obj = ResourceManager.GetObject("homeLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap homePic {
+            get {
+                object obj = ResourceManager.GetObject("homePic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap libraryGirlStudent {
             get {
                 object obj = ResourceManager.GetObject("libraryGirlStudent", resourceCulture);
@@ -136,6 +156,16 @@ namespace EnrollmentSystem.Properties {
         internal static System.Drawing.Bitmap lineline {
             get {
                 object obj = ResourceManager.GetObject("lineline", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap promptsubjJ {
+            get {
+                object obj = ResourceManager.GetObject("promptsubjJ", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

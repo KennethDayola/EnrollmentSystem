@@ -187,5 +187,14 @@ namespace EnrollmentSystem
             enrollmentEntryForm.Show();
             this.Close();
         }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            closedDirectly = false;
+            HomeForm homeForm = new HomeForm();
+            this.Hide();
+            homeForm.Show();
+            this.Close();
+        }
     }
  }

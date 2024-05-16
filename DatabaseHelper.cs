@@ -54,6 +54,31 @@ namespace EnrollmentSystem
         }
 
         /// <summary>
+        /// returns how many values are equal to the one provided in the parameter
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="columnName"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public int CheckHowManyOfSameInDB(string value, string columnName, string query)
+        {
+            int count = 0;
+            dbConnection.Open();
+            dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = query;
+            dbDataReader = dbCommand.ExecuteReader();
+            while (dbDataReader.Read())
+            {
+                if (dbDataReader[columnName].ToString().Trim().ToUpper() == value.Trim().ToUpper())
+                {
+                    count++;
+                }
+            }
+            dbConnection.Close();
+            return count;
+        } 
+
+        /// <summary>
         /// fetches a row from the database based on the query and columns provided
         /// </summary>
         /// <param name="query"></param>

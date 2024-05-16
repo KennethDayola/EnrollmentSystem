@@ -16,8 +16,8 @@ namespace EnrollmentSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            SubjectEntryForm subjectEntryForm = new SubjectEntryForm();
-            subjectEntryForm.Show();
+            HomeForm homeForm = new HomeForm();
+            homeForm.Show();
             Application.Run();
         }
     }
