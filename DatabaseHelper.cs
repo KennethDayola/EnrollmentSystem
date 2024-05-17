@@ -20,7 +20,7 @@ namespace EnrollmentSystem
         /// <summary>
         /// initializes connection to database
         /// </summary>
-        /// <param name="query"></param>
+        /// <param name="query"></param>The query to execute
         public void ConnectToDatabase(string query)
         {
             dbConnection = new OleDbConnection(connectionString);
@@ -31,11 +31,11 @@ namespace EnrollmentSystem
         /// <summary>
         /// updates a specific cell in a specified table
         /// </summary>
-        /// <param name="tableName">The name of the table to update</param>
-        /// <param name="columnName">The name of the column to update</param>
-        /// <param name="value">The new value to set</param>
-        /// <param name="identifierColumn">The name of the column used for identifying the row</param>
-        /// <param name="identifierValue">The value of the identifier column for the row to update</param>
+        /// <param name="tableName">The name of the table to update.</param>
+        /// <param name="columnName">The name of the column to update.</param>
+        /// <param name="value">The new value to set.</param>
+        /// <param name="identifierColumn">The column used to identify the row.</param>
+        /// <param name="identifierValue">The value of the identifier column for the row to update.</param>
         public void UpdateCell(string tableName, string columnName, object value, string identifierColumn, object identifierValue)
         {
             using (OleDbCommand updateCommand = dbConnection.CreateCommand())
@@ -52,7 +52,7 @@ namespace EnrollmentSystem
                 {
                     if (dbConnection.State == ConnectionState.Open)
                     {
-                        dbConnection.Close(); 
+                        dbConnection.Close();  
                     }
                 }
             }
@@ -61,10 +61,10 @@ namespace EnrollmentSystem
         /// <summary>
         /// checks if specified data is already in the database
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="columnName"></param>
-        /// <param name="query"></param>
-        /// <returns></returns>
+        /// <param name="value">The data to search for in the specified column.</param>
+        /// <param name="columnName">The name of the column to search.</param>
+        /// <param name="query">The query to execute.</param>
+        /// <returns>True if the data is found, otherwise false.</returns>
         public bool CheckIfDataInDB(string value, string columnName, string query)
         {
             bool found = false;
@@ -87,8 +87,8 @@ namespace EnrollmentSystem
         /// <summary>
         /// fetches a row from the database based on the query and columns provided
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="columns"></param>
+        /// <param name="query">The query to execute.</param>
+        /// <param name="columns">The columns to fetch from the database.</param>
         public void FetchRowDataFromDB(string query, params string[] columns)
         {
             dbConnection.Open();
@@ -110,8 +110,8 @@ namespace EnrollmentSystem
         /// <summary>
         /// fetches data from the database based on the columns provided
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="columns"></param>
+        /// <param name="query">The query to execute.</param>
+        /// <param name="columns">The columns to fetch from the database.</param>
         public void FetchDataFromDB(string query, params string[] columns)
         {
             dbConnection.Open();
@@ -133,11 +133,11 @@ namespace EnrollmentSystem
         /// <summary>
         /// checks if specified data is already in the database and fetches a row based on the columns provided
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="columnName"></param>
-        /// <param name="query"></param>
-        /// <param name="additionalColumns"></param>
-        /// <returns></returns>
+        /// <param name="value">The data to search for in the specified column.</param>
+        /// <param name="columnName">The name of the column to search.</param>
+        /// <param name="query">The query to execute.</param>
+        /// <param name="additionalColumns">Additional columns to fetch if the data is found.</param>
+        /// <returns>True if the data is found, otherwise false.</returns>
         public bool CheckAndFetchFromDB(string value, string columnName, string query, params string[] additionalColumns)
         {
             bool found = false;
@@ -166,12 +166,12 @@ namespace EnrollmentSystem
         /// <summary>
         /// checks if two data are found in the database, mainly if there are two primary keys
         /// </summary>
-        /// <param name="value1"></param>
-        /// <param name="value2"></param>
-        /// <param name="columnName1"></param>
-        /// <param name="columnName2"></param>
-        /// <param name="query"></param>
-        /// <returns></returns>
+        /// <param name="value1">The first data to search for in the first specified column.</param>
+        /// <param name="value2">The second data to search for in the second specified column.</param>
+        /// <param name="columnName1">The name of the first column to search.</param>
+        /// <param name="columnName2">The name of the second column to search.</param>
+        /// <param name="query">The query to execute.</param>
+        /// <returns>True if both data are found, otherwise false.</returns>
         public bool CheckIfDataInDBTwoKeys(string value1, string value2, string columnName1, string columnName2, string query)
         {
             bool found = false;
