@@ -39,12 +39,12 @@
             this.subjectEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubjectScheduleEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enrollmentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.ExitMenuStrip = new System.Windows.Forms.MenuStrip();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.enrollmentEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5.SuspendLayout();
             this.ProceedMenuStrip.SuspendLayout();
             this.ExitMenuStrip.SuspendLayout();
@@ -70,7 +70,7 @@
             this.label20.BackColor = System.Drawing.Color.RoyalBlue;
             this.label20.Font = new System.Drawing.Font("Segoe UI Variable Display Semil", 9.25F);
             this.label20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label20.Location = new System.Drawing.Point(555, 0);
+            this.label20.Location = new System.Drawing.Point(509, 2);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(160, 21);
             this.label20.TabIndex = 18;
@@ -135,10 +135,10 @@
             this.ProceedMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ProceedToolStripMenuItem});
             this.ProceedMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.ProceedMenuStrip.Location = new System.Drawing.Point(645, 497);
+            this.ProceedMenuStrip.Location = new System.Drawing.Point(795, 497);
             this.ProceedMenuStrip.Name = "ProceedMenuStrip";
             this.ProceedMenuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.ProceedMenuStrip.Size = new System.Drawing.Size(335, 54);
+            this.ProceedMenuStrip.Size = new System.Drawing.Size(185, 54);
             this.ProceedMenuStrip.TabIndex = 30;
             this.ProceedMenuStrip.Text = "menuStrip1";
             // 
@@ -184,6 +184,15 @@
             this.studentEntryToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
             this.studentEntryToolStripMenuItem.Text = "👩‍🎓 Student Entry";
             this.studentEntryToolStripMenuItem.Click += new System.EventHandler(this.studentEntryToolStripMenuItem_Click);
+            // 
+            // enrollmentEntryToolStripMenuItem
+            // 
+            this.enrollmentEntryToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10.2F);
+            this.enrollmentEntryToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.enrollmentEntryToolStripMenuItem.Name = "enrollmentEntryToolStripMenuItem";
+            this.enrollmentEntryToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
+            this.enrollmentEntryToolStripMenuItem.Text = "📝 Enrollment Entry ";
+            this.enrollmentEntryToolStripMenuItem.Click += new System.EventHandler(this.enrollmentEntryToolStripMenuItem_Click);
             // 
             // label5
             // 
@@ -249,15 +258,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(96, 84);
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
-            // 
-            // enrollmentEntryToolStripMenuItem
-            // 
-            this.enrollmentEntryToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 10.2F);
-            this.enrollmentEntryToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.enrollmentEntryToolStripMenuItem.Name = "enrollmentEntryToolStripMenuItem";
-            this.enrollmentEntryToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
-            this.enrollmentEntryToolStripMenuItem.Text = "📝 Enrollment Entry ";
-            this.enrollmentEntryToolStripMenuItem.Click += new System.EventHandler(this.enrollmentEntryToolStripMenuItem_Click);
             // 
             // HomeForm
             // 

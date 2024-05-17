@@ -65,6 +65,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.IDNumTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -297,6 +298,7 @@
             // 
             this.panel1.BackgroundImage = global::EnrollmentSystem.Properties.Resources.libraryGirlStudent;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.CancelButton);
             this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Controls.Add(this.RemarksComboBox);
@@ -367,9 +369,9 @@
             this.label17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label17.Location = new System.Drawing.Point(280, 371);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 20);
+            this.label17.Size = new System.Drawing.Size(71, 20);
             this.label17.TabIndex = 12;
-            this.label17.Text = "Remarks";
+            this.label17.Text = "Remarks*";
             this.label17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // YearTextBox
@@ -390,9 +392,9 @@
             this.label16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label16.Location = new System.Drawing.Point(458, 306);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(37, 20);
+            this.label16.Size = new System.Drawing.Size(43, 20);
             this.label16.TabIndex = 10;
-            this.label16.Text = "Year";
+            this.label16.Text = "Year*";
             this.label16.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // CourseTextBox
@@ -413,9 +415,9 @@
             this.label15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label15.Location = new System.Drawing.Point(391, 306);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(54, 20);
+            this.label15.Size = new System.Drawing.Size(60, 20);
             this.label15.TabIndex = 8;
-            this.label15.Text = "Course";
+            this.label15.Text = "Course*";
             this.label15.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // LastNameTextBox
@@ -436,9 +438,9 @@
             this.label14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label14.Location = new System.Drawing.Point(277, 238);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(79, 20);
+            this.label14.Size = new System.Drawing.Size(85, 20);
             this.label14.TabIndex = 6;
-            this.label14.Text = "Last Name";
+            this.label14.Text = "Last Name*";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // MiddleInitialTextBox
@@ -482,9 +484,9 @@
             this.label10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label10.Location = new System.Drawing.Point(274, 173);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 20);
+            this.label10.Size = new System.Drawing.Size(86, 20);
             this.label10.TabIndex = 2;
-            this.label10.Text = "First Name";
+            this.label10.Text = "First Name*";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // IDNumTextBox
@@ -505,9 +507,21 @@
             this.label9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label9.Location = new System.Drawing.Point(274, 111);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(82, 20);
+            this.label9.Size = new System.Drawing.Size(88, 20);
             this.label9.TabIndex = 0;
-            this.label9.Text = "ID Number";
+            this.label9.Text = "ID Number*";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Semilight", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Silver;
+            this.label12.Location = new System.Drawing.Point(400, 71);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(176, 17);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "*Please fill up all required fieds";
             // 
             // StudentEntryForm
             // 
@@ -576,5 +590,6 @@
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enrollmentEntryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
+        private System.Windows.Forms.Label label12;
     }
 }

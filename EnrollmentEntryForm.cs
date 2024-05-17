@@ -60,6 +60,7 @@ namespace EnrollmentSystem
                     EnrollmentDateTimePicker.Enabled = true;
                     EnrollmentDataGridView.Enabled = true;
                     EncodedTextBox.Enabled = true;
+                    SchoolYearTextBox.Enabled = true;
                     ClearButton.Enabled = true;
                     SaveButton.Enabled = true;
                     idFound = true;
@@ -79,6 +80,7 @@ namespace EnrollmentSystem
                 EnrollmentDateTimePicker.Enabled = false;
                 EnrollmentDataGridView.Enabled = false;
                 EncodedTextBox.Enabled = false;
+                SchoolYearTextBox.Enabled = false;
                 ClearButton.Enabled = false;
                 SaveButton.Enabled = false;
             }
@@ -146,6 +148,14 @@ namespace EnrollmentSystem
 
             for (int i = 0; i < EnrollmentDataGridView.RowCount - 1; i++)
             {
+                if (databaseHelperDF.CheckIfDataInDB(IDNumberTextBox.Text, "ENRDFSTUDID", "Select * From ENROLLMENTDETAILFILE"))
+                {
+                    if (databaseHelperDF.CheckIfDataInDBTwoKeys(IDNumberTextBox.Text, "New", "STFSTUDID", "STFSTUDREMARKS", "Select * From STUDENTFILE"))
+                    {
+                        databaseHelperDF.UpdateCell("StudentFile", "STFSTUDREMARKS", "Old", "STFSTUDID", IDNumberTextBox.Text);
+                    }
+                }
+
                 DataSet thisDatasetDF = new DataSet();
                 databaseHelperDF.dbDataAdapter.Fill(thisDatasetDF, "EnrollmentDetailFile");
 
@@ -157,6 +167,10 @@ namespace EnrollmentSystem
 
                 thisDatasetDF.Tables["EnrollmentDetailFile"].Rows.Add(thisRowDF);
                 databaseHelperDF.dbDataAdapter.Update(thisDatasetDF, "EnrollmentDetailFile");
+            }
+            if (databaseHelperDF.dbConnection.State == ConnectionState.Open)
+            {
+                databaseHelperDF.dbConnection.Close();
             }
 
             //Recording of enrollment header file
@@ -187,24 +201,17 @@ namespace EnrollmentSystem
             DataSet thisDatasetSSF = new DataSet();
             databaseHelperSSF.dbDataAdapter.Fill(thisDatasetSSF, "SubjectSchedFile");
 
-            databaseHelperSSF.dbConnection.Open();
             for (int i = 0; i < EnrollmentDataGridView.RowCount - 1; i++)
             {
                 foreach (DataRow row in thisDatasetSSF.Tables["SubjectSchedFile"].Rows)
                 {
                     if (row["SSFEDPCODE"].ToString().Trim() == EnrollmentDataGridView.Rows[i].Cells["EDPCodeColumn"].Value.ToString().Trim())
                     {
-                        OleDbCommand updateCommand = databaseHelperSSF.dbConnection.CreateCommand();
-                        updateCommand.CommandText = "UPDATE SubjectSchedFile SET SSFCLASSSIZE = @ClassSize WHERE SSFEDPCODE = @EDPCode";
-                        updateCommand.Parameters.AddWithValue("@ClassSize", classroomCurrentSizes[i]);
-                        updateCommand.Parameters.AddWithValue("@EDPCode", row["SSFEDPCODE"].ToString().Trim());
-                        updateCommand.ExecuteNonQuery();
-                        updateCommand.Dispose();
+                        databaseHelperSSF.UpdateCell("SubjectSchedFile", "SSFCLASSSIZE", classroomCurrentSizes[i], "SSFEDPCODE", row["SSFEDPCODE"].ToString().Trim());
                         break;
                     }
                 }
             }
-            databaseHelperSSF.dbConnection.Close();
 
             MessageBox.Show("Recorded");
         }
@@ -454,6 +461,7 @@ namespace EnrollmentSystem
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
+            classroomCurrentSizes.Clear();
             TotalUnitsLabel.Text = null;
             TotalUnitsLabel.BackColor = Color.Gray;
             EnrollmentDataGridView.Rows.Clear();

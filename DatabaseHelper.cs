@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
 
@@ -25,6 +26,36 @@ namespace EnrollmentSystem
             dbConnection = new OleDbConnection(connectionString);
             dbDataAdapter = new OleDbDataAdapter(query, dbConnection);
             dbCommandBuilder = new OleDbCommandBuilder(dbDataAdapter);
+        }
+
+        /// <summary>
+        /// updates a specific cell in a specified table
+        /// </summary>
+        /// <param name="tableName">The name of the table to update</param>
+        /// <param name="columnName">The name of the column to update</param>
+        /// <param name="value">The new value to set</param>
+        /// <param name="identifierColumn">The name of the column used for identifying the row</param>
+        /// <param name="identifierValue">The value of the identifier column for the row to update</param>
+        public void UpdateCell(string tableName, string columnName, object value, string identifierColumn, object identifierValue)
+        {
+            using (OleDbCommand updateCommand = dbConnection.CreateCommand())
+            {
+                try
+                {
+                    dbConnection.Open(); 
+                    updateCommand.CommandText = "UPDATE " + tableName + " SET " + columnName + " = @Value WHERE " + identifierColumn + " = @IdentifierValue";
+                    updateCommand.Parameters.AddWithValue("@Value", value);
+                    updateCommand.Parameters.AddWithValue("@IdentifierValue", identifierValue);
+                    updateCommand.ExecuteNonQuery();
+                }
+                finally
+                {
+                    if (dbConnection.State == ConnectionState.Open)
+                    {
+                        dbConnection.Close(); 
+                    }
+                }
+            }
         }
 
         /// <summary>
